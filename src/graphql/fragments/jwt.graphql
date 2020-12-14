@@ -1,0 +1,10 @@
+fragment JWTFields on JWT {
+  token
+  refreshToken
+  uid
+  expiresAt
+  refreshTokenExpiresAt
+  payload {
+    ...AuthUserFields
+  }
+}

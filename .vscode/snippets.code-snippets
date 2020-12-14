@@ -1,0 +1,52 @@
+{
+  "Create Action types": {
+    "prefix": "rxat",
+    "body": [
+      "import { AppError } from '@commons/types';",
+      "",
+      "export const ${1/([a-z]+)/${1:/upcase}/g} = '${1/([a-z]+)/${1:/upcase}/g}';",
+      "export const ${1/([a-z]+)/${1:/upcase}/g}_SUCCESS = '${1/([a-z]+)/${1:/upcase}/g}_SUCCESS';",
+      "export const ${1/([a-z]+)/${1:/upcase}/g}_ERROR = '${1/([a-z]+)/${1:/upcase}/g}_ERROR';",
+      "",
+      "export interface ${1/(([a-z]+)(_)?)/${2:/capitalize}/g}Action {",
+      "  type: typeof ${1/([a-z]+)/${1:/upcase}/g};",
+      "}",
+      "",
+      "export interface ${1/(([a-z]+)(_)?)/${2:/capitalize}/g}ActionSuccess {",
+      "  type: typeof ${1/([a-z]+)/${1:/upcase}/g}_SUCCESS;",
+      "}",
+      "",
+      "export interface ${1/(([a-z]+)(_)?)/${2:/capitalize}/g}ActionError {",
+      "  type: typeof ${1/([a-z]+)/${1:/upcase}/g}_ERROR;",
+      "  payload: AppError;",
+      "}",
+      "",
+      "export type ${1/(([a-z]+)(_)?)/${2:/capitalize}/g}ActionTypes = ${1/(([a-z]+)(_)?)/${2:/capitalize}/g}Action | ${1/(([a-z]+)(_)?)/${2:/capitalize}/g}ActionSuccess | ${1/(([a-z]+)(_)?)/${2:/capitalize}/g}ActionError;",
+      ""
+    ],
+    "description": "Create Action types"
+  },
+  "create actions": {
+    "prefix": "rxa",
+    "body": [
+      "import { AppError } from '@commons/types';",
+      "",
+      "export const ${1/((_)([a-z]+))/${3:/capitalize}/g} = (payload: ${2}): ${1/(([a-z]+)(_)?)/${2:/capitalize}/g}ActionTypes => ({",
+      "  type: ${1/([a-z]+)/${1:/upcase}/g},",
+      "  payload,",
+      "});",
+      "",
+      "export const ${1/((_)([a-z]+))/${3:/capitalize}/g}Error = (payload: AppError): ${1/(([a-z]+)(_)?)/${2:/capitalize}/g}ActionTypes => ({",
+      "  type: ${1/([a-z]+)/${1:/upcase}/g}_ERROR,",
+      "  payload,",
+      "});",
+      "",
+      "export const ${1/((_)([a-z]+))/${3:/capitalize}/g}Success = (payload: $3): ${1/(([a-z]+)(_)?)/${2:/capitalize}/g}ActionTypes => ({",
+      "  type: ${1/([a-z]+)/${1:/upcase}/g}_SUCCESS,",
+      "  payload,",
+      "});",
+      ""
+    ],
+    "description": "create actions"
+  }
+}

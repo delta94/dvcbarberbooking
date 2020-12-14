@@ -1,0 +1,46 @@
+.master-layout {
+  $header-height: 64px;
+  $content-height: calc(100vh - 64px);
+
+  .trigger {
+    font-size: 18px;
+    line-height: $header-height;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+    &:hover {
+      color: #1890ff;
+    }
+  }
+
+  .logo {
+    height: 32px;
+    background: rgba(0, 0, 0, 0.2);
+    margin: 16px;
+  }
+
+  .bg-white {
+    background-color: #fff;
+  }
+
+  .master-layout {
+    // background: #fff;
+    overflow-y: auto;
+  }
+
+  .ant-menu {
+    .ant-menu-item:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .master-header {
+    header {
+      padding: 0;
+    }
+  }
+
+  .master-content {
+    height: $content-height;
+  }
+}

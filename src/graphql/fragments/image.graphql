@@ -1,0 +1,9 @@
+fragment MediaFields on Media {
+  id
+  uri
+  size
+  fileType
+  fileName
+  createdBy
+  createdAt
+}
