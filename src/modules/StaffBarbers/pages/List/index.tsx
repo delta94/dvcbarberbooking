@@ -40,7 +40,7 @@ export default function ListStaffBarberPage() {
       key: 'status',
       render: (record: StaffFields) => (
         <Switch
-          checked={record.status === true ? true : false}
+          defaultChecked={record.status === true ? true : false}
           onChange={(text: any) => {
             submit({
               id: record.id,

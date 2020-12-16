@@ -1,11 +1,11 @@
+import useBranchByCity from '@modules/BranchBarber/hooks/useBranchByCity';
 import { branchFields } from '@modules/BranchBarber/redux/action-types/list';
-import { Button, Col, Form, Row, Space, Input, Select, Switch } from 'antd';
-import { FormItemProps, FormProps } from 'antd/es/form';
 import useCityBarber from '@modules/CityBarbers/hooks/useCityBarbers';
 import { CityFields } from '@modules/CityBarbers/redux/action-types';
-import React, { useState } from 'react';
-import useBranchByCity from '@modules/BranchBarber/hooks/useBranchByCity';
 import { StaffFields } from '@modules/StaffBarbers/redux/action-types';
+import { Button, Col, Form, Input, Row, Select, Space, Switch } from 'antd';
+import { FormItemProps, FormProps } from 'antd/es/form';
+import React, { useState } from 'react';
 
 const layout: FormProps = {
   layout: 'vertical',
