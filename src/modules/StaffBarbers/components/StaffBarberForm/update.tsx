@@ -1,11 +1,11 @@
+import useBranchBarber from '@modules/BranchBarber/hooks/useBranchBarber';
 import { branchFields } from '@modules/BranchBarber/redux/action-types/list';
-import { Button, Col, Form, Row, Space, Input, Select, Switch } from 'antd';
-import { FormItemProps, FormProps } from 'antd/es/form';
 import useCityBarber from '@modules/CityBarbers/hooks/useCityBarbers';
 import { CityFields } from '@modules/CityBarbers/redux/action-types';
-import React, { useState } from 'react';
-import useBranchBarber from '@modules/BranchBarber/hooks/useBranchBarber';
 import { StaffFields } from '@modules/StaffBarbers/redux/action-types';
+import { Button, Col, Form, Input, Row, Select, Space, Switch } from 'antd';
+import { FormItemProps, FormProps } from 'antd/es/form';
+import React from 'react';
 
 const layout: FormProps = {
   layout: 'vertical',
@@ -39,6 +39,7 @@ export default function UpdateStaffBarberForm(props: IProp) {
         ratingTimes: props.item!.ratingTimes,
         status: values.status,
         username: values.username,
+        salary: 500,
       });
   };
 

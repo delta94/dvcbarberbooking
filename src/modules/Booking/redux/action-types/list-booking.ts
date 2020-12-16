@@ -35,13 +35,13 @@ export type BookingFields = {
 
 export interface ListBookingAction {
   type: typeof LIST_BOOKING;
-  from?: string;
-  to?: string;
+  year?: string;
 }
 
 export interface ListBookingActionSuccess {
   type: typeof LIST_BOOKING_SUCCESS;
   payload: BookingFields[];
+  arr: any;
 }
 
 export interface ListBookingActionError {

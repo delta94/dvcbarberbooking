@@ -1,5 +1,5 @@
 import { Col, DatePicker, Row, Table, Form, Button, Tag } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ColumnsType } from 'antd/lib/table/Table';
 import useBillBarber from '@modules/BillBarbers/hooks/useBillBarber';
 import useBranchBarber from '@modules/BranchBarber/hooks/useBranchBarber';
@@ -11,20 +11,37 @@ import { useDispatch } from 'react-redux';
 import { ListBillBarber } from '@modules/BillBarbers/redux/actions/list-bill';
 import TableHeader from '@commons/components/TableHeader';
 import useBookings from '@modules/Booking/hooks/useBookings';
-import { cartItem } from '@modules/Booking/redux/action-types';
+import { BookingFields, cartItem } from '@modules/Booking/redux/action-types';
 import { listBooking } from '@modules/Booking/redux/actions/list-booking';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 
 const layout: FormProps = {
   layout: 'vertical',
 };
 
-const { RangePicker } = DatePicker;
-
 export default function ListStaffBarberPage() {
   const dispatch = useDispatch();
   const { items, loading } = useBillBarber();
-  const { items: booking, loading: loadingBooking } = useBookings();
-  console.log('adad', booking);
+  const { items: booking, loading: loadingBooking, arr } = useBookings();
+
+  const test = booking.map((itb) => {
+    return {
+      name: itb.salonName,
+      money: booking
+        .filter((it) => {
+          return (it.salonName = itb.salonName);
+        })
+        .map((mn) => {
+          return mn.cartItemList
+            .map((it) => {
+              return Number(it.productPrice * it.productQuantity);
+            })
+            .reduce((a, b) => a + b, 0);
+        })
+        .reduce((a, b) => a + b, 0),
+      time: itb.time.slice(3, 5),
+    };
+  });
 
   const { loading: loadingBranch, items: branch } = useBranchBarber();
   const rowKey = (item: branchFields) => `${item.id}`;
@@ -131,26 +148,21 @@ export default function ListStaffBarberPage() {
       width: '20%',
       render: (record: any) => {
         if (record.id === 'Total') {
-          return (
-            items
-              // .filter((it) => {
-              //   return it.salonName === record.name;
-              // })
-              .map((it) => {
-                return Number(
-                  it.shoppingItemList
-                    ?.map((sp: cartItem) => {
-                      return Number(sp.productPrice * sp.productQuantity);
-                    })
-                    .reduce((a, b) => {
-                      return Number(a + b);
-                    }, 0),
-                );
-              })
-              .reduce((a, b) => {
-                return a + b;
-              }, 0)
-          );
+          return items
+            .map((it) => {
+              return Number(
+                it.shoppingItemList
+                  ?.map((sp: cartItem) => {
+                    return Number(sp.productPrice * sp.productQuantity);
+                  })
+                  .reduce((a, b) => {
+                    return Number(a + b);
+                  }, 0),
+              );
+            })
+            .reduce((a, b) => {
+              return a + b;
+            }, 0);
         } else {
           return items
             .filter((it) => {
@@ -179,19 +191,14 @@ export default function ListStaffBarberPage() {
       width: '20%',
       render: (record: any) => {
         if (record.id === 'Total') {
-          return (
-            items
-              // .filter((it) => {
-              //   return it.salonName === record.name;
-              // })
-              .map((it) => {
-                return Number(it.finalPrice);
-              })
-              .reduce((a, b) => {
-                console.log('ad', b);
-                return a + b;
-              }, 0)
-          );
+          return items
+            .map((it) => {
+              return Number(it.finalPrice);
+            })
+            .reduce((a, b) => {
+              console.log('ad', b);
+              return a + b;
+            }, 0);
         } else {
           return items
             .filter((it) => {
@@ -213,15 +220,13 @@ export default function ListStaffBarberPage() {
       <TableHeader>
         <Form
           onFinish={async (values) => {
-            let from: any | undefined;
-            let to: any | undefined;
-            if (values && values.rangePicker) {
-              from = moment(values.rangePicker[0]).format('DD/MM/YYYY');
-              to = moment(values.rangePicker[1]).format('DD/MM/YYYY');
-            }
+            let year: any | undefined;
 
-            await dispatch(listBooking(from, to));
-            await dispatch(ListBillBarber(from, to));
+            if (values && values.rangePicker) {
+              year = moment(values.rangePicker).format('YYYY');
+            }
+            await dispatch(listBooking(year));
+            await dispatch(ListBillBarber(year));
           }}
           style={{ marginLeft: 32, marginTop: 12, marginRight: 32, marginBottom: 12 }}
           name="advanced_search"
@@ -229,19 +234,19 @@ export default function ListStaffBarberPage() {
         >
           <Row>
             <Col>
-              <Form.Item name="rangePicker" label="Chọn thời gian">
-                <RangePicker format="DD/MM/YYYY" placeholder={['Từ ngày', 'Đến ngày']} />
+              <Form.Item style={{ marginRight: 10 }} name="rangePicker" label="Chọn thời gian">
+                <DatePicker picker="year" placeholder="Chọn năm" />
               </Form.Item>
             </Col>
             <Col>
-              <Form.Item label="   ">
+              <Form.Item style={{ marginRight: 10 }}>
                 <Button htmlType="submit" type="primary">
                   Tìm kiếm
                 </Button>
               </Form.Item>
             </Col>
             <Col>
-              <Form.Item label="   ">
+              <Form.Item>
                 <Button
                   onClick={() => {
                     // form.resetFields();
@@ -261,6 +266,16 @@ export default function ListStaffBarberPage() {
           rowKey={rowKey}
           loading={loading}
         ></Table>
+
+        <LineChart width={1000} height={300} data={arr} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="day" />
+          <YAxis label={{ value: 'Tiền ($)', angle: -90, position: 'insideLeft' }} />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="total" name="Tổng tiền" stroke="#8884d8" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="booking" name="Lịch đã xong" stroke="#82ca9d" />
+        </LineChart>
       </TableHeader>
     </>
   );

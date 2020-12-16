@@ -9,10 +9,9 @@ import {
   ListBillBarberActionTypes,
 } from '../action-types/list';
 
-export const ListBillBarber = (from?: string, to?: string): ListBillBarberActionTypes => ({
+export const ListBillBarber = (year?: string): ListBillBarberActionTypes => ({
   type: LIST_BILL_BARBER,
-  from,
-  to,
+  year,
 });
 
 export const ListBillBarberError = (payload: AppError): ListBillBarberActionTypes => ({

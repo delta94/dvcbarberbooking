@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
+    "@types/recharts": "^1.8.18",
     "antd": "4.7.2",
     "axios": "^0.19.2",
     "customize-cra": "^1.0.0",
@@ -35,6 +36,7 @@
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.2",
+    "recharts": "^1.8.5",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",

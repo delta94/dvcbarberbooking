@@ -21,12 +21,12 @@ export type BillFields = {
   salonId?: string;
   salonName?: string;
   shoppingItemList?: [];
+  time: string;
 };
 
 export interface ListBillBarberAction {
   type: typeof LIST_BILL_BARBER;
-  from?: string;
-  to?: string;
+  year?: string;
 }
 
 export interface ListBillBarberActionSuccess {

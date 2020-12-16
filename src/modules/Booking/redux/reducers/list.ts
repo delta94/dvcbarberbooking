@@ -15,6 +15,7 @@ export interface ListBookingState {
   items: BookingFields[];
   itemsFilter: BookingFields[];
   deletingItems: string[];
+  arr: any;
 }
 
 const initialState: ListBookingState = {
@@ -22,6 +23,7 @@ const initialState: ListBookingState = {
   items: [],
   itemsFilter: [],
   deletingItems: [],
+  arr: [],
 };
 
 export default function listBooking(
@@ -41,6 +43,7 @@ export default function listBooking(
         loading: false,
         items: action.payload || [],
         itemsFilter: action.payload || [],
+        arr: action.arr,
       };
     case LIST_BOOKING_ERROR:
       return {

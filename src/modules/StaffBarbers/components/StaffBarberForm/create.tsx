@@ -40,6 +40,7 @@ export default function CreateStaffBarberForm(props: IProp) {
         rating: 0,
         ratingTimes: 0,
         status: values.status,
+        salary: 500,
       });
   };
 

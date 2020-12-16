@@ -9,10 +9,9 @@ import {
   BookingFields,
 } from '../action-types/list-booking';
 
-export const listBooking = (from?: string, to?: string): ListBookingActionTypes => ({
+export const listBooking = (year?: string): ListBookingActionTypes => ({
   type: LIST_BOOKING,
-  from,
-  to,
+  year,
 });
 
 export const listBookingError = (payload: AppError): ListBookingActionTypes => ({
@@ -20,9 +19,10 @@ export const listBookingError = (payload: AppError): ListBookingActionTypes => (
   payload,
 });
 
-export const listBookingSuccess = (payload: BookingFields[]): ListBookingActionTypes => ({
+export const listBookingSuccess = (payload: BookingFields[], arr: any): ListBookingActionTypes => ({
   type: LIST_BOOKING_SUCCESS,
   payload,
+  arr,
 });
 
 export const listBookingFilter = (payload: string): ListBookingActionTypes => ({

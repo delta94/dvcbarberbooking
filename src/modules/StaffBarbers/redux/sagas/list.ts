@@ -6,7 +6,6 @@ import { ListStaffBarberSuccess, ListStaffBarberError } from '../actions/list-st
 export function* ListStaffSaga(action: ListStaffBarberAction) {
   try {
     const data: StaffFields[] = yield call(getListStaffFromFirebase);
-    console.log(data);
     yield put(ListStaffBarberSuccess(data));
   } catch (error) {
     yield put(ListStaffBarberError(error));

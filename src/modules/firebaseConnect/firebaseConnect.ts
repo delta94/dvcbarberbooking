@@ -101,8 +101,7 @@ export const createBranchBarberFirebase = async (data: branchFields) => {
     });
 };
 
-export const getAllBillFromFirebase = async (from?: string, to?: string) => {
-  console.log(to);
+export const getAllBillFromFirebase = async (year?: string) => {
   const data = Array<BillFields>();
   const CityColl = await firebase.firestore().collection('AllSalon');
   const idCityArray = await CityColl.get().then((snap) => {
@@ -113,106 +112,61 @@ export const getAllBillFromFirebase = async (from?: string, to?: string) => {
     return idCityArray;
   });
 
-  if (from && to) {
-    for (var i = 0; i < idCityArray.length; i++) {
-      const idBranchArray = await CityColl.doc(idCityArray[i])
-        .collection('Branch')
-        .get()
-        .then((snap) => {
-          const idBranchArray: string[] = [];
-          snap.forEach((doc: any) => {
-            idBranchArray.push(doc.id);
-          });
-          return idBranchArray;
+  for (var i = 0; i < idCityArray.length; i++) {
+    const idBranchArray = await CityColl.doc(idCityArray[i])
+      .collection('Branch')
+      .get()
+      .then((snap) => {
+        const idBranchArray: string[] = [];
+        snap.forEach((doc: any) => {
+          idBranchArray.push(doc.id);
         });
+        return idBranchArray;
+      });
 
-      for (var i1 = 0; i1 < idCityArray.length; i1++) {
-        for (var j = 0; j < idBranchArray.length; j++) {
-          await firebase
-            .firestore()
-            .collection('AllSalon')
-            .doc(idCityArray[i1])
-            .collection('Branch')
-            .doc(idBranchArray[j])
-            .collection('Invoices')
-            .where('time', '>=', from)
-            .where('time', '<=', to)
-
-            .get()
-            .then((snap) => {
-              snap.forEach((doc: any) => {
-                data.push({
-                  id: doc.id,
-                  idCity: idCityArray[i],
-                  idBranch: idBranchArray[i],
-                  finalPrice: doc.data().finalPrice,
-                  barberId: doc.data().barberId,
-                  barberName: doc.data().barberName,
-                  barberServices: doc.data().barberServices,
-                  customerName: doc.data().customerName,
-                  customerPhone: doc.data().customerPhone,
-                  imageUrl: doc.data().imageUrl,
-                  salonAddress: doc.data().salonAddress,
-                  salonId: doc.data().salonId,
-                  salonName: doc.data().salonName,
-                  shoppingItemList: doc.data().shoppingItemList,
-                });
+    for (var i1 = 0; i1 < idCityArray.length; i1++) {
+      for (var j = 0; j < idBranchArray.length; j++) {
+        await firebase
+          .firestore()
+          .collection('AllSalon')
+          .doc(idCityArray[i1])
+          .collection('Branch')
+          .doc(idBranchArray[j])
+          .collection('Invoices')
+          .get()
+          .then((snap) => {
+            snap.forEach((doc: any) => {
+              data.push({
+                id: doc.id,
+                idCity: idCityArray[i],
+                idBranch: idBranchArray[i],
+                finalPrice: doc.data().finalPrice,
+                barberId: doc.data().barberId,
+                barberName: doc.data().barberName,
+                barberServices: doc.data().barberServices,
+                customerName: doc.data().customerName,
+                customerPhone: doc.data().customerPhone,
+                imageUrl: doc.data().imageUrl,
+                salonAddress: doc.data().salonAddress,
+                salonId: doc.data().salonId,
+                salonName: doc.data().salonName,
+                shoppingItemList: doc.data().shoppingItemList,
+                time: doc.data().time,
               });
             });
-        }
-      }
-    }
-  } else {
-    for (var i = 0; i < idCityArray.length; i++) {
-      const idBranchArray = await CityColl.doc(idCityArray[i])
-        .collection('Branch')
-        .get()
-        .then((snap) => {
-          const idBranchArray: string[] = [];
-          snap.forEach((doc: any) => {
-            idBranchArray.push(doc.id);
           });
-          return idBranchArray;
-        });
-
-      for (var i1 = 0; i1 < idCityArray.length; i1++) {
-        for (var j = 0; j < idBranchArray.length; j++) {
-          await firebase
-            .firestore()
-            .collection('AllSalon')
-            .doc(idCityArray[i1])
-            .collection('Branch')
-            .doc(idBranchArray[j])
-            .collection('Invoices')
-            .get()
-            .then((snap) => {
-              snap.forEach((doc: any) => {
-                data.push({
-                  id: doc.id,
-                  idCity: idCityArray[i],
-                  idBranch: idBranchArray[i],
-                  finalPrice: doc.data().finalPrice,
-                  barberId: doc.data().barberId,
-                  barberName: doc.data().barberName,
-                  barberServices: doc.data().barberServices,
-                  customerName: doc.data().customerName,
-                  customerPhone: doc.data().customerPhone,
-                  imageUrl: doc.data().imageUrl,
-                  salonAddress: doc.data().salonAddress,
-                  salonId: doc.data().salonId,
-                  salonName: doc.data().salonName,
-                  shoppingItemList: doc.data().shoppingItemList,
-                });
-              });
-            });
-        }
       }
     }
+  }
+  if (year) {
+    return data.filter((bill) => {
+      return bill.time.slice(6, 11) === year;
+    });
   }
   return data;
 };
 
-export const getListBookingFromFirebase = async (from?: string, to?: string) => {
+export const getListBookingFromFirebase = async (year?: string) => {
   const data = Array<BookingFields>();
   const UserColl = await firebase.firestore().collection('User');
   await UserColl.doc()
@@ -227,64 +181,39 @@ export const getListBookingFromFirebase = async (from?: string, to?: string) => 
     });
     return r;
   });
-  if (from && to) {
-    for (var i = 0; i < ar.length; i++) {
-      await UserColl.doc(ar[i])
-        .collection('Booking')
-        .where('time', '>=', from)
-        .where('time', '<=', to)
-        .get()
-        .then((snap) => {
-          snap.forEach((doc: any) => {
-            data.push({
-              idCol: ar[i],
-              id: doc.id,
-              barberId: doc.data().barberId,
-              barberName: doc.data().barberName,
-              cartItemList: doc.data().cartItemList,
-              cityBook: doc.data().cityBook,
-              customerName: doc.data().customerName,
-              customerPhone: doc.data().customerPhone,
-              done: doc.data().done,
-              salonAddress: doc.data().salonAddress,
-              salonId: doc.data().salonId,
-              salonName: doc.data().salonName,
-              slot: doc.data().slot,
-              time: doc.data().time,
-              timestamp: doc.data().timestamp,
-            });
+  for (var i = 0; i < ar.length; i++) {
+    await UserColl.doc(ar[i])
+      .collection('Booking')
+      .get()
+      .then((snap) => {
+        snap.forEach((doc: any) => {
+          data.push({
+            idCol: ar[i],
+            id: doc.id,
+            barberId: doc.data().barberId,
+            barberName: doc.data().barberName,
+            cartItemList: doc.data().cartItemList,
+            cityBook: doc.data().cityBook,
+            customerName: doc.data().customerName,
+            customerPhone: doc.data().customerPhone,
+            done: doc.data().done,
+            salonAddress: doc.data().salonAddress,
+            salonId: doc.data().salonId,
+            salonName: doc.data().salonName,
+            slot: doc.data().slot,
+            time: doc.data().time,
+            timestamp: doc.data().timestamp,
           });
         });
-    }
-  } else {
-    for (var i = 0; i < ar.length; i++) {
-      await UserColl.doc(ar[i])
-        .collection('Booking')
-        .get()
-        .then((snap) => {
-          snap.forEach((doc: any) => {
-            data.push({
-              idCol: ar[i],
-              id: doc.id,
-              barberId: doc.data().barberId,
-              barberName: doc.data().barberName,
-              cartItemList: doc.data().cartItemList,
-              cityBook: doc.data().cityBook,
-              customerName: doc.data().customerName,
-              customerPhone: doc.data().customerPhone,
-              done: doc.data().done,
-              salonAddress: doc.data().salonAddress,
-              salonId: doc.data().salonId,
-              salonName: doc.data().salonName,
-              slot: doc.data().slot,
-              time: doc.data().time,
-              timestamp: doc.data().timestamp,
-            });
-          });
-        });
-    }
+      });
   }
-  return data;
+  if (year) {
+    return data.filter((bk) => {
+      return bk.done === true && bk.time.slice(6, 11) === year;
+    });
+  } else {
+    return data;
+  }
 };
 
 export const DeleteBookingFirebase = async (id: string, idCol: string) => {
@@ -513,6 +442,7 @@ export const getDetailStaffFromFirebase = async (id: string, idCity: string, idB
     ratingTimes: 0,
     username: '',
     status: false,
+    salary: 0,
   };
   await firebase
     .firestore()
@@ -535,6 +465,7 @@ export const getDetailStaffFromFirebase = async (id: string, idCity: string, idB
         data.status = doc.data()?.status;
         data.idCity = idCity;
         data.idBranch = idBranch;
+        data.salary = doc.data()?.salary;
       }
     });
   return data;
@@ -585,6 +516,7 @@ export const getListStaffFromFirebase = async () => {
                 ratingTimes: doc.data().ratingTimes,
                 username: doc.data().username,
                 status: doc.data().status,
+                salary: doc.data().salary,
               });
             });
           });

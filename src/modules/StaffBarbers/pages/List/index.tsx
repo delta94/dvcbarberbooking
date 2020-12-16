@@ -10,9 +10,11 @@ import { PlusOutlined } from '@ant-design/icons';
 import { getHistory } from '@helpers/history';
 import { getNewStaffUrl } from '@helpers/url';
 import RowActions from '@modules/StaffBarbers/pages/List/RowActions';
+import useUpdateStaff from '@modules/StaffBarbers/hooks/useUpdateStaff';
 
 export default function ListStaffBarberPage() {
   const { loading, items } = useStaffBarber();
+  const { submit } = useUpdateStaff();
   const rowKey = (item: StaffFields) => `${item.id}`;
 
   const columns: ColumnsType<StaffFields> = [
@@ -29,14 +31,30 @@ export default function ListStaffBarberPage() {
       },
     },
     {
-      title: 'Trạng thái hoạt động',
+      title: 'Lương',
+      dataIndex: 'salary',
+      key: 'barberName',
+    },
+    {
+      title: 'Trạng thái hoạt động12',
       key: 'status',
-      render: (record: any) => (
+      render: (record: StaffFields) => (
         <Switch
-          defaultChecked={true}
-          // onChange={(text: any) => {
-          //   submit({ id: record.id, name: record.name, status: text });
-          // }}
+          checked={record.status === true ? true : false}
+          onChange={(text: any) => {
+            submit({
+              id: record.id,
+              name: record.name,
+              status: text,
+              idBranch: record.idBranch,
+              idCity: record.idCity,
+              password: record.password,
+              rating: record.rating,
+              ratingTimes: record.ratingTimes,
+              username: record.username,
+              salary: record.salary,
+            });
+          }}
         />
       ),
     },

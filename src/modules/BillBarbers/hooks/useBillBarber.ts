@@ -8,7 +8,7 @@ export default function useBillBarber(from?: string, to?: string) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(ListBillBarber(from, to));
+    dispatch(ListBillBarber());
   }, [dispatch]);
 
   return {

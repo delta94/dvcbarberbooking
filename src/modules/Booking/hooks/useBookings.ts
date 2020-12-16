@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { listBooking } from '../redux/actions/list-booking';
 
 export default function useBookings() {
-  const { loading, items } = useSelector((state: RootState) => state.booking.listBooking);
+  const { loading, items, arr } = useSelector((state: RootState) => state.booking.listBooking);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,5 +14,6 @@ export default function useBookings() {
   return {
     loading,
     items,
+    arr,
   };
 }

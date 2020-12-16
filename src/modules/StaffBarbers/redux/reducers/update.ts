@@ -23,6 +23,7 @@ const initialState: UpdateStaffBarberState = {
     ratingTimes: 0,
     username: '',
     status: false,
+    salary: 0,
   },
 };
 
