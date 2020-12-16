@@ -1,5 +1,5 @@
 import TableHeader from '@commons/components/TableHeader';
-import { Table } from 'antd';
+import { Table, Tag } from 'antd';
 import React from 'react';
 import FilterUser from '@modules/User/containers/FilterUser';
 import { ColumnsType } from 'antd/lib/table/Table';
@@ -46,12 +46,21 @@ export default function ListBookingPage(prop: IProp) {
     },
     {
       title: 'Trạng thái',
+      align: 'center',
       key: 'done',
       render: (record: BookingUserFields) => {
         if (record.done) {
-          return 'Đã hoàn thành';
+          return (
+            <Tag style={{ width: 130, textAlign: 'center' }} color="green">
+              Đã hoàn thành
+            </Tag>
+          );
         } else {
-          return 'Chưa hoàn thành';
+          return (
+            <Tag style={{ width: 130, textAlign: 'center' }} color="red">
+              Chưa hoàn thành
+            </Tag>
+          );
         }
       },
     },

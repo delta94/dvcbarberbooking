@@ -1,6 +1,6 @@
 import PageHeader from '@commons/components/PageHeader';
 import TableHeader from '@commons/components/TableHeader';
-import { Table } from 'antd';
+import { Table, Tag } from 'antd';
 import React from 'react';
 import FilterBooking from '@modules/Booking/containers/FilterBooking';
 import { ColumnsType } from 'antd/lib/table/Table';
@@ -50,9 +50,17 @@ export default function ListBookingPage() {
       key: 'done',
       render: (record: BookingFields) => {
         if (record.done) {
-          return 'Đã hoàn thành';
+          return (
+            <Tag style={{ width: 130, textAlign: 'center' }} color="green">
+              Đã hoàn thành
+            </Tag>
+          );
         } else {
-          return 'Chưa hoàn thành';
+          return (
+            <Tag style={{ width: 130, textAlign: 'center' }} color="red">
+              Chưa hoàn thành
+            </Tag>
+          );
         }
       },
     },
