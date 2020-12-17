@@ -2,6 +2,7 @@ import useBranchBarber from '@modules/BranchBarber/hooks/useBranchBarber';
 import { branchFields } from '@modules/BranchBarber/redux/action-types/list';
 import useCityBarber from '@modules/CityBarbers/hooks/useCityBarbers';
 import { CityFields } from '@modules/CityBarbers/redux/action-types';
+import UploadDragger from '@modules/Media/containers/UploadDragger';
 import { StaffFields } from '@modules/StaffBarbers/redux/action-types';
 import { Button, Col, Form, Input, Row, Select, Space, Switch } from 'antd';
 import { FormItemProps, FormProps } from 'antd/es/form';
@@ -25,6 +26,7 @@ interface IProp {
 const { Option } = Select;
 
 export default function UpdateStaffBarberForm(props: IProp) {
+  const add = Math.random();
   const { items: city } = useCityBarber();
   const { items: branch } = useBranchBarber();
   const onFinish = (values: any) => {
@@ -39,7 +41,8 @@ export default function UpdateStaffBarberForm(props: IProp) {
         ratingTimes: props.item!.ratingTimes,
         status: values.status,
         username: values.username,
-        salary: 500,
+        salary: Number(values.salary),
+        avatar: values.image,
       });
   };
 
@@ -70,6 +73,15 @@ export default function UpdateStaffBarberForm(props: IProp) {
               <Col span={12}>
                 <Form.Item label="Mật khẩu" name="password" {...tailLayout}>
                   <Input />
+                </Form.Item>
+              </Col>
+            </Row>
+          </Col>
+          <Col span={16}>
+            <Row>
+              <Col span={12}>
+                <Form.Item label="Lương" name="salary" {...tailLayout}>
+                  <Input type="number" />
                 </Form.Item>
               </Col>
             </Row>
@@ -119,6 +131,26 @@ export default function UpdateStaffBarberForm(props: IProp) {
                 </Form.Item>
               </Col>
             </Row>
+          </Col>
+          <Col span={14}>
+            <Form.Item
+              style={{ width: '60%', marginTop: 22 }}
+              label=""
+              name="image"
+              rules={[
+                {
+                  required: true,
+                  message: 'Đây là trường bắt buộc',
+                },
+                {
+                  whitespace: true,
+                  message: 'Đây là trường bắt buộc',
+                },
+              ]}
+              {...tailLayout}
+            >
+              <UploadDragger name={add.toString()} />
+            </Form.Item>
           </Col>
         </Row>
 

@@ -20,7 +20,7 @@ const columns: ColumnsType<ProductBarberFields> = [
     render: (text) => formatCharacters(text, 30),
   },
   {
-    title: 'Giá ( VNĐ )',
+    title: 'Giá ($)',
     dataIndex: 'price',
     key: 'name',
   },
@@ -30,7 +30,7 @@ const columns: ColumnsType<ProductBarberFields> = [
     key: 'image',
     render: (text) => {
       if (text) {
-        return <Image style={{ maxWidth: 50, maxHeight: 50 }} src={text} />;
+        return <Image style={{ maxWidth: 70, maxHeight: 70 }} src={text} />;
       } else {
         return 'Không có ảnh';
       }
@@ -42,23 +42,6 @@ export default function ProductListPage(props: any) {
   const { loading, items } = useProductBarber();
 
   const rowKey = (item: any) => `${item.id}`;
-
-  // const onChange = (pagination: TablePaginationConfig) => {
-  //   updatePagination({
-  //     current: pagination.current || 1,
-  //     pageSize: pagination.pageSize || TABLE_PAGE_SIZE,
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   filterProducts({
-  //     query: undefined,
-  //     categoryId: undefined,
-  //     current: 1,
-  //     pageSize: TABLE_PAGE_SIZE,
-  //   });
-  //   // eslint-disable-next-line
-  // }, []);
 
   const handleAdd = () => {
     getHistory().push('/productsbarber/new');

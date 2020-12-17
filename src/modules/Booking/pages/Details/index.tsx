@@ -1,14 +1,13 @@
 import FormHeader from '@commons/components/FormHeader';
+import { NotificationSuccess } from '@commons/components/Notification';
 import PageHeader from '@commons/components/PageHeader';
 import FormSkeleton from '@commons/components/Skeletons/FormSkeleton';
 import { setTitle } from '@helpers/dom';
 import { getHistory } from '@helpers/history';
-import { Empty, Modal, Tabs } from 'antd';
-import React, { useCallback, useEffect } from 'react';
-import { useState } from 'react';
+import { getListBookingUrl } from '@helpers/url';
+import { Modal, Tabs } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { NotificationSuccess } from '@commons/components/Notification';
-import { getListProductUrl } from '@helpers/url';
 
 const { confirm } = Modal;
 
@@ -20,7 +19,7 @@ const showCancel = () => {
     cancelText: 'Hủy',
     onOk() {
       NotificationSuccess('Thông báo', 'Hủy cập nhật sản phẩm thành công');
-      getHistory().push(getListProductUrl());
+      getHistory().push(getListBookingUrl());
     },
   });
 };
@@ -56,7 +55,7 @@ export default function DetailBookingPage() {
     if (touched) {
       showCancel();
     } else {
-      getHistory().push(getListProductUrl());
+      getHistory().push(getListBookingUrl());
     }
   };
 

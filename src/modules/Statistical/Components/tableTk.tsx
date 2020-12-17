@@ -24,25 +24,6 @@ export default function ListStaffBarberPage() {
   const { items, loading } = useBillBarber();
   const { items: booking, loading: loadingBooking, arr } = useBookings();
 
-  const test = booking.map((itb) => {
-    return {
-      name: itb.salonName,
-      money: booking
-        .filter((it) => {
-          return (it.salonName = itb.salonName);
-        })
-        .map((mn) => {
-          return mn.cartItemList
-            .map((it) => {
-              return Number(it.productPrice * it.productQuantity);
-            })
-            .reduce((a, b) => a + b, 0);
-        })
-        .reduce((a, b) => a + b, 0),
-      time: itb.time.slice(3, 5),
-    };
-  });
-
   const { loading: loadingBranch, items: branch } = useBranchBarber();
   const rowKey = (item: branchFields) => `${item.id}`;
 
@@ -143,7 +124,7 @@ export default function ListStaffBarberPage() {
     },
 
     {
-      title: 'Khoản chi sản phẩm( $ )',
+      title: 'Khoản chi sản phẩm ($)',
       align: 'center',
       width: '20%',
       render: (record: any) => {
@@ -186,7 +167,7 @@ export default function ListStaffBarberPage() {
       },
     },
     {
-      title: 'Khoản thu ( $ )',
+      title: 'Khoản thu ($)',
       align: 'center',
       width: '20%',
       render: (record: any) => {
@@ -274,7 +255,8 @@ export default function ListStaffBarberPage() {
           <Tooltip />
           <Legend />
           <Line type="monotone" dataKey="total" name="Tổng tiền" stroke="#8884d8" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="booking" name="Lịch đã xong" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="booking" name="Lịch đã xong" stroke="#82ca9d" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="unBooking" name="Lịch chưa xong" stroke="#82ca9d" activeDot={{ r: 8 }} />
         </LineChart>
       </TableHeader>
     </>

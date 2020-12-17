@@ -31,7 +31,7 @@ export default function ListUserPage() {
       key: 'address',
     },
     {
-      title: 'Trạng thái hoạt động12',
+      title: 'Trạng thái hoạt động',
       key: 'status',
       render: (record: User) => (
         <Switch

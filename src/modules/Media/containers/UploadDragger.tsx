@@ -3,7 +3,6 @@ import { LoadingOutlined, PlusOutlined, DeleteOutlined, EyeOutlined } from '@ant
 import { message, Upload, Button, Space } from 'antd';
 import Modal from 'antd/lib/modal/Modal';
 import React, { useCallback, useState } from 'react';
-import { singleUploadApi } from '../services/apis';
 import './style.scss';
 import { getDimensions } from '@helpers/getDimensions';
 import firebase from '@modules/firebaseConnect/firebaseConnect';

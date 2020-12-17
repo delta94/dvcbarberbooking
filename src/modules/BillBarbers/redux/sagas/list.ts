@@ -6,7 +6,6 @@ import { ListBillBarberSuccess, ListBillBarberError } from '../actions/list-bill
 export function* ListBillSaga(action: ListBillBarberAction) {
   try {
     const data: BillFields[] = yield call(getAllBillFromFirebase, action.year);
-    console.log('bill', data);
     yield put(ListBillBarberSuccess(data));
   } catch (error) {
     yield put(ListBillBarberError(error));

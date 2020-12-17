@@ -1,6 +1,6 @@
 import PageHeader from '@commons/components/PageHeader';
 import TableHeader from '@commons/components/TableHeader';
-import { Button, Table, Switch } from 'antd';
+import { Button, Table, Switch, Image } from 'antd';
 import React from 'react';
 import { ColumnsType } from 'antd/lib/table/Table';
 import FilterBill from '@modules/BillBarbers/containers/FilterBill';
@@ -27,13 +27,29 @@ export default function ListStaffBarberPage() {
       title: 'Đánh giá',
       key: 'barberName',
       render: (_, record) => {
-        return Number(Number(record.rating) / Number(record.ratingTimes));
+        if (record.rating == 0 && record.ratingTimes == 0) {
+          return 'Chưa có đánh giá';
+        } else {
+          return Number(Number(record.rating) / Number(record.ratingTimes));
+        }
       },
     },
     {
       title: 'Lương',
       dataIndex: 'salary',
       key: 'barberName',
+    },
+    {
+      title: 'Lương',
+      dataIndex: 'avatar',
+      key: 'barberName',
+      render: (text) => {
+        if (text) {
+          return <Image style={{ maxWidth: 70, maxHeight: 70 }} src={text} />;
+        } else {
+          return 'Không có ảnh';
+        }
+      },
     },
     {
       title: 'Trạng thái hoạt động12',
@@ -53,6 +69,7 @@ export default function ListStaffBarberPage() {
               ratingTimes: record.ratingTimes,
               username: record.username,
               salary: record.salary,
+              avatar: record.avatar,
             });
           }}
         />

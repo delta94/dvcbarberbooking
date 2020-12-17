@@ -35,103 +35,88 @@ export default function ProductBarberForm() {
     <>
       <Form {...layout} name="basic" onFinish={onFinish}>
         <Row>
-          <Col span={16}>
-            <Row>
-              <Col span={12}>
-                <Form.Item
-                  label="Name"
-                  name="name"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Đây là trường bắt buộc',
-                    },
-                    {
-                      whitespace: true,
-                      message: 'Đây là trường bắt buộc',
-                    },
-                  ]}
-                  {...tailLayout}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-            </Row>
+          <Col span={10}>
+            <Col>
+              <Form.Item
+                label="Tên sản phẩm"
+                name="name"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Đây là trường bắt buộc',
+                  },
+                  {
+                    whitespace: true,
+                    message: 'Đây là trường bắt buộc',
+                  },
+                ]}
+                {...tailLayout}
+              >
+                <Input style={{ width: '80%' }} />
+              </Form.Item>
+            </Col>
+            <Col>
+              <Form.Item
+                label="Giá ($)"
+                name="price"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Đây là trường bắt buộc',
+                  },
+                  {
+                    whitespace: true,
+                    message: 'Đây là trường bắt buộc',
+                  },
+                ]}
+                {...tailLayout}
+              >
+                <Input style={{ width: '80%' }} type="number" />
+              </Form.Item>
+            </Col>
+            <Col>
+              <Form.Item
+                label="Loại sản phẩm"
+                name="idCol"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Đây là trường bắt buộc',
+                  },
+                  {
+                    whitespace: true,
+                    message: 'Đây là trường bắt buộc',
+                  },
+                ]}
+                {...tailLayout}
+              >
+                <Select style={{ width: '80%' }} showSearch filterOption={false}>
+                  {items.map((p: any) => {
+                    return (
+                      <Option key={p.id} value={p.id}>
+                        {p.name}
+                      </Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+              <Row>
+                <Col style={{ textAlign: 'center' }}>
+                  <Form.Item {...tailLayout}>
+                    <Space>
+                      <Button loading={loading} type="primary" htmlType="submit">
+                        Lưu
+                      </Button>
+                      <Button type="ghost">Hủy</Button>
+                    </Space>
+                  </Form.Item>
+                </Col>
+              </Row>
+            </Col>
           </Col>
-          <Col span={16}>
-            <Row>
-              <Col span={12}>
-                <Form.Item
-                  label="Giá"
-                  name="price"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Đây là trường bắt buộc',
-                    },
-                    {
-                      whitespace: true,
-                      message: 'Đây là trường bắt buộc',
-                    },
-                  ]}
-                  {...tailLayout}
-                >
-                  <Input type="number" />
-                </Form.Item>
-              </Col>
-            </Row>
-          </Col>{' '}
-          <Col span={16}>
-            <Row>
-              <Col span={12}>
-                <Form.Item
-                  label="Loại sản phẩm"
-                  name="idCol"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Đây là trường bắt buộc',
-                    },
-                    {
-                      whitespace: true,
-                      message: 'Đây là trường bắt buộc',
-                    },
-                  ]}
-                  {...tailLayout}
-                >
-                  <Select showSearch filterOption={false} style={{ width: '100%' }}>
-                    {items.map((p: any) => {
-                      return (
-                        <Option key={p.id} value={p.id}>
-                          {p.name}
-                        </Option>
-                      );
-                    })}
-                  </Select>
-                </Form.Item>
-              </Col>
-            </Row>
-          </Col>
-          <Col span={16}>
-            <Row>
-              <Col span={12}>
-                <Form.Item label="" name="image" {...tailLayout}>
-                  <UploadDragger name={add.toString()} />
-                </Form.Item>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col span={24}>
-            <Form.Item {...tailLayout}>
-              <Space>
-                <Button type="primary" htmlType="submit">
-                  Lưu
-                </Button>
-                <Button type="ghost">Hủy</Button>
-              </Space>
+          <Col span={14}>
+            <Form.Item style={{ width: '60%', marginTop: 22 }} label="" name="image" {...tailLayout}>
+              <UploadDragger name={add.toString()} />
             </Form.Item>
           </Col>
         </Row>

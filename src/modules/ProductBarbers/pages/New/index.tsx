@@ -10,12 +10,12 @@ export default function NewProductBarberPage() {
       breadcrumbName: 'Trang chủ',
     },
     {
-      path: '/productbarber',
-      breadcrumbName: 'Quản lý loại sản phẩm',
+      path: '/productsBarber',
+      breadcrumbName: 'Quản lý sản phẩm',
     },
     {
-      path: '/productbarber/new',
-      breadcrumbName: 'Thêm mới loại sản phẩm',
+      path: '/productsBarber/new',
+      breadcrumbName: 'Thêm mới sản phẩm',
     },
   ];
 

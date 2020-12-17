@@ -24,6 +24,7 @@ const initialState: DetailStaffBarberState = {
     username: '',
     status: false,
     salary: 0,
+    avatar: '',
   },
 };
 

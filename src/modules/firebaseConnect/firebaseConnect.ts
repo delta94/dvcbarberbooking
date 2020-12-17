@@ -162,8 +162,9 @@ export const getAllBillFromFirebase = async (year?: string) => {
     return data.filter((bill) => {
       return bill.time.slice(6, 11) === year;
     });
+  } else {
+    return data;
   }
-  return data;
 };
 
 export const getListBookingFromFirebase = async (year?: string) => {
@@ -443,6 +444,7 @@ export const getDetailStaffFromFirebase = async (id: string, idCity: string, idB
     username: '',
     status: false,
     salary: 0,
+    avatar: '',
   };
   await firebase
     .firestore()
@@ -466,6 +468,7 @@ export const getDetailStaffFromFirebase = async (id: string, idCity: string, idB
         data.idCity = idCity;
         data.idBranch = idBranch;
         data.salary = doc.data()?.salary;
+        data.avatar = doc.data()?.avatar;
       }
     });
   return data;
@@ -517,6 +520,7 @@ export const getListStaffFromFirebase = async () => {
                 username: doc.data().username,
                 status: doc.data().status,
                 salary: doc.data().salary,
+                avatar: doc.data().avatar,
               });
             });
           });
@@ -640,6 +644,7 @@ export const createStaffFirebase = async (data: StaffFields) => {
       ratingTimes: data.ratingTimes,
       username: data.username,
       status: data.status,
+      avatar: data.avatar,
     })
     .catch((err) => {
       console.log(err);
@@ -663,6 +668,7 @@ export const UpdateStaffFirebase = async (data: StaffFields) => {
       ratingTimes: data.ratingTimes,
       username: data.username,
       status: data.status,
+      avatar: data.avatar,
     })
     .catch((err) => {
       console.log(err);

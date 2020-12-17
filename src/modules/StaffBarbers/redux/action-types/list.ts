@@ -17,6 +17,7 @@ export type StaffFields = {
   username: string;
   status: boolean;
   salary: number;
+  avatar: string;
 };
 
 export interface ListStaffBarberAction {
