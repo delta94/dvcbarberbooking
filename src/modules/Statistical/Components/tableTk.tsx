@@ -1,19 +1,19 @@
-import { Col, DatePicker, Row, Table, Form, Button, Tag } from 'antd';
-import React, { useEffect } from 'react';
-import { ColumnsType } from 'antd/lib/table/Table';
+import { RetweetOutlined } from '@ant-design/icons';
+import TableHeader from '@commons/components/TableHeader';
 import useBillBarber from '@modules/BillBarbers/hooks/useBillBarber';
+import { ListBillBarber } from '@modules/BillBarbers/redux/actions/list-bill';
+import useBookings from '@modules/Booking/hooks/useBookings';
+import { cartItem } from '@modules/Booking/redux/action-types';
+import { listBooking } from '@modules/Booking/redux/actions/list-booking';
 import useBranchBarber from '@modules/BranchBarber/hooks/useBranchBarber';
 import { branchFields } from '@modules/BranchBarber/redux/action-types';
+import { Button, Col, DatePicker, Form, Row, Table, Tag } from 'antd';
 import { FormProps } from 'antd/es/form';
-import { RetweetOutlined } from '@ant-design/icons';
+import { ColumnsType } from 'antd/lib/table/Table';
 import moment from 'moment';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { ListBillBarber } from '@modules/BillBarbers/redux/actions/list-bill';
-import TableHeader from '@commons/components/TableHeader';
-import useBookings from '@modules/Booking/hooks/useBookings';
-import { BookingFields, cartItem } from '@modules/Booking/redux/action-types';
-import { listBooking } from '@modules/Booking/redux/actions/list-booking';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
 
 const layout: FormProps = {
   layout: 'vertical',

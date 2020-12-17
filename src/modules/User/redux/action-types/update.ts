@@ -12,7 +12,6 @@ export interface UpdateUserAction {
 
 export interface UpdateUserActionSuccess {
   type: typeof UPDATE_USER_SUCCESS;
-  payload: User;
 }
 
 export interface UpdateUserActionError {

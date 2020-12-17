@@ -6,6 +6,7 @@ import React, { useCallback, useState } from 'react';
 import { singleUploadApi } from '../services/apis';
 import './style.scss';
 import { getDimensions } from '@helpers/getDimensions';
+import firebase from '@modules/firebaseConnect/firebaseConnect';
 
 function getBase64(img: any, callback: any) {
   const reader = new FileReader();
@@ -15,10 +16,11 @@ function getBase64(img: any, callback: any) {
 
 interface IProps {
   value?: any;
-  onChange?(media: any | undefined): void;
+  onChange?(url: string | undefined): void;
   width?: number;
   height?: number;
   mustBeSquare?: boolean;
+  name: string;
 }
 
 export default function UploadDragger(props: IProps) {
@@ -64,9 +66,9 @@ export default function UploadDragger(props: IProps) {
   );
 
   const [state, setState] = useState({
-    imageUrl: '',
     loading: false,
     value: props.value,
+    url: '',
   });
 
   const [stateIMG, setStateIMG] = useState({
@@ -88,33 +90,45 @@ export default function UploadDragger(props: IProps) {
       getBase64(info.file.originFileObj, (imageUrl: string) =>
         setState({
           ...state,
-          imageUrl,
           loading: false,
+          url: imageUrl,
         }),
       );
     }
   };
 
   const customRequest = ({ onSuccess, onError, file }: any) => {
-    singleUploadApi(file)
-      .then((r) => {
-        props.onChange && props.onChange(r.singleUpload || undefined);
-        setState({
-          ...state,
-          value: r.singleUpload || undefined,
-        });
-
-        onSuccess();
-      })
-      .catch((error) => {
-        props.onChange && props.onChange(undefined);
-        onError(error);
-      });
+    const uploadTask = firebase.storage().ref(`images/${props.name}`).put(file);
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        console.log('snapshot');
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        firebase
+          .storage()
+          .ref('images')
+          .child(props.name)
+          .getDownloadURL()
+          .then((url) => {
+            setState({ ...state, url: url });
+            props.onChange && props.onChange(url);
+            onSuccess();
+          })
+          .catch((error) => {
+            props.onChange && props.onChange(undefined);
+            onError(error);
+          });
+      },
+    );
   };
 
   return (
     <>
-      {state.imageUrl ? (
+      {state.url ? (
         <div className="container">
           <Modal
             visible={stateIMG.previewVisible}
@@ -123,11 +137,11 @@ export default function UploadDragger(props: IProps) {
             }}
             footer={null}
           >
-            <img alt="ImgProduct" src={state.imageUrl} style={{ width: '100%' }} />
+            <img alt="ImgProduct" src={state.url} style={{ width: '100%' }} />
           </Modal>
           <input
             type="image"
-            src={state.imageUrl}
+            src={state.url}
             value={props.value?.id}
             className="image"
             alt="avatar"
@@ -144,9 +158,9 @@ export default function UploadDragger(props: IProps) {
                 onClick={() => {
                   props.onChange && props.onChange(undefined);
                   setState({
-                    imageUrl: '',
                     loading: false,
                     value: { id: '', createdBy: '', fileName: '', fileType: '', size: 0, uri: '' },
+                    url: '',
                   });
                 }}
               />

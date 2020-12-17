@@ -44,10 +44,6 @@ export default function CreateStaffBarberForm(props: IProp) {
       });
   };
 
-  const onChangeStatus = (values: any) => {
-    setStatusStaff(values);
-  };
-
   return (
     <>
       <Form {...layout} onFinish={onFinish} name="basic">
@@ -119,6 +115,7 @@ export default function CreateStaffBarberForm(props: IProp) {
               <Col span={12}>
                 <Form.Item label="Trạng thái hoạt động" name="status" {...tailLayout}>
                   <Switch
+                    defaultChecked={true}
                     onChange={(values) => {
                       setStatusStaff(values);
                     }}

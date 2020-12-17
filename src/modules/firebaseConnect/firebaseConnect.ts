@@ -3,7 +3,7 @@ import { BookingFields } from '@modules/Booking/redux/action-types/list-booking'
 import { branchFields } from '@modules/BranchBarber/redux/action-types/list';
 import { CategoriesFields } from '@modules/CategoryBarbers/redux/action-types/list-category-barber';
 import { CityFields } from '@modules/CityBarbers/redux/action-types/list-city-barber';
-import { User } from '@modules/LookBook/redux/action-types/list-users';
+import { User } from '@modules/User/redux/action-types';
 import { ProductBarberFields } from '@modules/ProductBarbers/redux/action-types/list-productbarber';
 import { StaffFields } from '@modules/StaffBarbers/redux/action-types/list';
 import { BookingUserFields } from '@modules/User/redux/action-types/list-booking-user';
@@ -553,7 +553,7 @@ export const deleteUserFirebase = async (id: string) => {
 };
 
 export const getDetailUserFromFirebase = async (id: string) => {
-  const user: User = { id: ' doc.id', name: 'doc.data()?.name', phoneNumber: '', address: 'adad' };
+  const user: User = { id: ' doc.id', name: 'doc.data()?.name', phoneNumber: '', address: 'adad', status: false };
   await firebase
     .firestore()
     .collection('User')
@@ -564,6 +564,7 @@ export const getDetailUserFromFirebase = async (id: string) => {
       user.phoneNumber = doc.data()?.phoneNumber;
       user.name = doc.data()?.name;
       user.address = doc.data()?.address;
+      user.status = doc.data()?.status;
     })
     .catch((err) => {
       console.log(err);
@@ -616,6 +617,7 @@ export const getListUserFromFirebase = async () => {
           name: doc.data().name,
           phoneNumber: doc.data()?.phoneNumber,
           address: doc.data()?.address,
+          status: doc.data()?.status,
         });
       });
     });
@@ -660,6 +662,22 @@ export const UpdateStaffFirebase = async (data: StaffFields) => {
       rating: data.rating,
       ratingTimes: data.ratingTimes,
       username: data.username,
+      status: data.status,
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const UpdateUserFirebase = async (data: User) => {
+  await firebase
+    .firestore()
+    .collection('User')
+    .doc(data.id)
+    .set({
+      address: data.address,
+      name: data.name,
+      phoneNumber: data.phoneNumber,
       status: data.status,
     })
     .catch((err) => {

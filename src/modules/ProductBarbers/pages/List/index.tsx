@@ -29,7 +29,11 @@ const columns: ColumnsType<ProductBarberFields> = [
     dataIndex: 'image',
     key: 'image',
     render: (text) => {
-      return <Image style={{ maxWidth: 150, maxHeight: 150 }} src={text} />;
+      if (text) {
+        return <Image style={{ maxWidth: 50, maxHeight: 50 }} src={text} />;
+      } else {
+        return 'Không có ảnh';
+      }
     },
   },
 ];

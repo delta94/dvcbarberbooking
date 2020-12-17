@@ -4,6 +4,7 @@ import { listUsersSaga } from './list';
 import { deleteUserSaga } from './delete';
 import { getUserSaga } from './detail';
 import { createUserSaga } from './create';
+import { UpdateUserSaga } from './update';
 import { listBookingUserSaga } from './list-booking-user';
 
 export default function* userSagas() {
@@ -13,5 +14,6 @@ export default function* userSagas() {
     yield takeLatest(actionTypes.DELETE_USER, deleteUserSaga),
     yield takeLatest(actionTypes.GET_USER, getUserSaga),
     yield takeLatest(actionTypes.CREATE_USER, createUserSaga),
+    yield takeLatest(actionTypes.UPDATE_USER, UpdateUserSaga),
   ]);
 }

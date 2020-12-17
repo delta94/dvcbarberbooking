@@ -12,7 +12,6 @@ export const updateUserError = (payload: AppError): UpdateUserActionTypes => ({
   payload,
 });
 
-export const updateUserSuccess = (payload: User): UpdateUserActionTypes => ({
+export const updateUserSuccess = (): UpdateUserActionTypes => ({
   type: UPDATE_USER_SUCCESS,
-  payload,
 });

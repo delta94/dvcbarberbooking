@@ -10,6 +10,7 @@ export type User = {
   name?: string;
   address?: string;
   phoneNumber?: string;
+  status?: boolean;
 };
 
 export interface ListUsersAction {

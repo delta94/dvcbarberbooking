@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import listUsers, { ListUserState } from './list';
 import detailUser, { DetailUserState } from './detail';
 import createUser, { CreateUserState } from './create';
+import updateUser, { UpdateUserBarberState } from './update';
 import listBookingUser, { ListBookingUserState } from './list-booking-user';
 
 export interface UserModuleState {
@@ -10,6 +11,7 @@ export interface UserModuleState {
   detailUser: DetailUserState;
   createUser: CreateUserState;
   listBookingUser: ListBookingUserState;
+  updateUser: UpdateUserBarberState;
 }
 
 export default combineReducers<UserModuleState>({
@@ -17,4 +19,5 @@ export default combineReducers<UserModuleState>({
   detailUser,
   createUser,
   listBookingUser,
+  updateUser,
 });

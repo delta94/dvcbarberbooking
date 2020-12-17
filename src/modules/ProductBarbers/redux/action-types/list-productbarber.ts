@@ -10,7 +10,7 @@ export type ProductBarberFields = {
   id: string;
   image: string;
   name: string;
-  price: string;
+  price: number;
 };
 
 export interface ListProductBarberAction {
