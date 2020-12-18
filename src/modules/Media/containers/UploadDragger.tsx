@@ -2,7 +2,7 @@
 import { LoadingOutlined, PlusOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 import { message, Upload, Button, Space } from 'antd';
 import Modal from 'antd/lib/modal/Modal';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './style.scss';
 import { getDimensions } from '@helpers/getDimensions';
 import firebase from '@modules/firebaseConnect/firebaseConnect';
@@ -20,9 +20,11 @@ interface IProps {
   height?: number;
   mustBeSquare?: boolean;
   name: string;
+  urlAvater?: string;
 }
 
 export default function UploadDragger(props: IProps) {
+  console.log('ad', props.value);
   const beforeUpload = useCallback(
     async (file: any) => {
       const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
@@ -63,6 +65,15 @@ export default function UploadDragger(props: IProps) {
     },
     [props.width, props.height, props.mustBeSquare],
   );
+
+  useEffect(() => {
+    if (props.urlAvater) {
+      setState({ ...state, url: `${props.urlAvater}` });
+    } else {
+      setState({ ...state, url: '', value: '' });
+    }
+    // eslint-disable-next-line
+  }, [props]);
 
   const [state, setState] = useState({
     loading: false,

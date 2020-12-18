@@ -431,6 +431,20 @@ export const getListProductFromFirebase = async () => {
   return data;
 };
 
+export const getDeleteStaffFromFirebase = async (id: string, idCity: string, idBranch: string) => {
+  console.log(idBranch);
+  await firebase
+    .firestore()
+    .collection('AllSalon')
+    .doc(idCity)
+    .collection('Branch')
+    .doc(idBranch)
+    .collection('Barbers')
+    .doc(id)
+    .delete();
+  return true;
+};
+
 export const getDetailStaffFromFirebase = async (id: string, idCity: string, idBranch: string) => {
   console.log('add', id + idCity + idBranch);
   const data: StaffFields = {
@@ -512,7 +526,7 @@ export const getListStaffFromFirebase = async () => {
               data.push({
                 id: doc.id,
                 idCity: idCityArray[i],
-                idBranch: idBranchArray[i],
+                idBranch: idBranchArray[j],
                 name: doc.data().name,
                 password: doc.data().password,
                 rating: doc.data().rating,

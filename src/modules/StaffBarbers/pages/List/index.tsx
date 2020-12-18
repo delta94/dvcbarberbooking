@@ -40,7 +40,7 @@ export default function ListStaffBarberPage() {
       key: 'barberName',
     },
     {
-      title: 'Lương',
+      title: 'Ảnh nhân viên',
       dataIndex: 'avatar',
       key: 'barberName',
       render: (text) => {

@@ -34,6 +34,7 @@ export default function UpdateStaffBarberForm(props: IProp) {
   useEffect(
     () => {
       if (props.item) {
+        console.log('add', props.item.avatar);
         form.setFieldsValue({
           name: props.item.name,
           username: props.item.username,
@@ -41,6 +42,7 @@ export default function UpdateStaffBarberForm(props: IProp) {
           salary: Number(props.item.salary),
           Idcity: props.item.idCity,
           idBranch: props.item.idBranch,
+          image: props.item.avatar,
         });
       }
     },
@@ -168,7 +170,7 @@ export default function UpdateStaffBarberForm(props: IProp) {
               ]}
               {...tailLayout}
             >
-              <UploadDragger name={add.toString()} />
+              <UploadDragger urlAvater={props.item?.avatar} name={add.toString()} />
             </Form.Item>
           </Col>
         </Row>

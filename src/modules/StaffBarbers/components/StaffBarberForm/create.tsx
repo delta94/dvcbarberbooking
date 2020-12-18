@@ -51,9 +51,9 @@ export default function CreateStaffBarberForm(props: IProp) {
     <>
       <Form {...layout} onFinish={onFinish} name="basic">
         <Row>
-          <Col span={16}>
+          <Col span={14}>
             <Row>
-              <Col span={12}>
+              <Col span={10}>
                 <Form.Item
                   rules={[
                     {
@@ -72,11 +72,7 @@ export default function CreateStaffBarberForm(props: IProp) {
                   <Input />
                 </Form.Item>
               </Col>
-            </Row>
-          </Col>
-          <Col span={16}>
-            <Row>
-              <Col span={12}>
+              <Col span={10}>
                 <Form.Item
                   rules={[
                     {
@@ -96,133 +92,122 @@ export default function CreateStaffBarberForm(props: IProp) {
                 </Form.Item>
               </Col>
             </Row>
-          </Col>
-          <Col span={16}>
-            <Row>
-              <Col span={12}>
-                <Form.Item
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Đây là trường bắt buộc',
-                    },
-                    {
-                      whitespace: true,
-                      message: 'Đây là trường bắt buộc',
-                    },
-                  ]}
-                  label="Mật khẩu"
-                  name="password"
-                  {...tailLayout}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-            </Row>
-          </Col>
-          <Col span={16}>
-            <Row>
-              <Col span={12}>
-                <Form.Item
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Đây là trường bắt buộc',
-                    },
-                    {
-                      whitespace: true,
-                      message: 'Đây là trường bắt buộc',
-                    },
-                  ]}
-                  label="Lương"
-                  name="salary"
-                  {...tailLayout}
-                >
-                  <Input type="number" />
-                </Form.Item>
-              </Col>
-            </Row>
-          </Col>
-          <Col span={16}>
-            <Row>
-              <Col span={12}>
-                <Form.Item
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Đây là trường bắt buộc',
-                    },
-                    {
-                      whitespace: true,
-                      message: 'Đây là trường bắt buộc',
-                    },
-                  ]}
-                  label="Thành phố"
-                  name="idCity"
-                  {...tailLayout}
-                >
-                  <Select
-                    onChange={(values) => {
-                      submit(values.toString());
-                      console.log(values.toString());
-                    }}
+            <Col>
+              <Row>
+                <Col span={10}>
+                  <Form.Item
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Đây là trường bắt buộc',
+                      },
+                      {
+                        whitespace: true,
+                        message: 'Đây là trường bắt buộc',
+                      },
+                    ]}
+                    label="Mật khẩu"
+                    name="password"
+                    {...tailLayout}
                   >
-                    {city.map((city: CityFields) => (
-                      <Option key={city.id} value={city.id}>
-                        {city.name}
-                      </Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-              </Col>
-            </Row>
-          </Col>
-          <Col span={16}>
-            <Row>
-              <Col span={12}>
-                <Form.Item
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Đây là trường bắt buộc',
-                    },
-                    {
-                      whitespace: true,
-                      message: 'Đây là trường bắt buộc',
-                    },
-                  ]}
-                  label="Chi nhánh"
-                  name="idBranch"
-                  {...tailLayout}
+                    <Input />
+                  </Form.Item>
+                </Col>
+                <Col span={10}>
+                  <Form.Item
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Đây là trường bắt buộc',
+                      },
+                      {
+                        whitespace: true,
+                        message: 'Đây là trường bắt buộc',
+                      },
+                    ]}
+                    label="Lương"
+                    name="salary"
+                    {...tailLayout}
+                  >
+                    <Input type="number" />
+                  </Form.Item>
+                </Col>
+              </Row>
+            </Col>
+
+            <Col span={10}>
+              <Form.Item
+                rules={[
+                  {
+                    required: true,
+                    message: 'Đây là trường bắt buộc',
+                  },
+                  {
+                    whitespace: true,
+                    message: 'Đây là trường bắt buộc',
+                  },
+                ]}
+                label="Thành phố"
+                name="idCity"
+                {...tailLayout}
+              >
+                <Select
+                  onChange={(values) => {
+                    submit(values.toString());
+                    console.log(values.toString());
+                  }}
                 >
-                  <Select loading={loading}>
-                    {itemsBranchByCity.map((branch: branchFields) => (
-                      <Option key={branch.id} value={branch.id}>
-                        {branch.name}
-                      </Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-              </Col>
-            </Row>
+                  {city.map((city: CityFields) => (
+                    <Option key={city.id} value={city.id}>
+                      {city.name}
+                    </Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
+            <Col span={10}>
+              <Form.Item
+                rules={[
+                  {
+                    required: true,
+                    message: 'Đây là trường bắt buộc',
+                  },
+                  {
+                    whitespace: true,
+                    message: 'Đây là trường bắt buộc',
+                  },
+                ]}
+                label="Chi nhánh"
+                name="idBranch"
+                {...tailLayout}
+              >
+                <Select loading={loading}>
+                  {itemsBranchByCity.map((branch: branchFields) => (
+                    <Option key={branch.id} value={branch.id}>
+                      {branch.name}
+                    </Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
+            <Col span={16}>
+              <Row>
+                <Col span={12}>
+                  <Form.Item label="Trạng thái hoạt động" name="status" {...tailLayout}>
+                    <Switch
+                      defaultChecked={true}
+                      onChange={(values) => {
+                        setStatusStaff(values);
+                      }}
+                    />
+                  </Form.Item>
+                </Col>
+              </Row>
+            </Col>
           </Col>
-          <Col span={16}>
-            <Row>
-              <Col span={12}>
-                <Form.Item label="Trạng thái hoạt động" name="status" {...tailLayout}>
-                  <Switch
-                    defaultChecked={true}
-                    onChange={(values) => {
-                      setStatusStaff(values);
-                    }}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-          </Col>
-          <Col span={14}>
+          <Col span={10}>
             <Form.Item
-              style={{ width: '60%', marginTop: 22 }}
+              style={{ marginTop: 22 }}
               label=""
               name="image"
               rules={[

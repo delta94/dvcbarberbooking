@@ -4,6 +4,7 @@ import { ListStaffSaga } from './list';
 import { CreateStaffSaga } from './create';
 import { DetailStaffSaga } from './details';
 import { UpdateStaffSaga } from './update';
+import { DeleteStaffSaga } from './delete';
 
 export default function* StaffBarberSagas() {
   return all([
@@ -11,5 +12,6 @@ export default function* StaffBarberSagas() {
     yield takeLatest(actionTypes.DETAIL_STAFF_BARBER, DetailStaffSaga),
     yield takeLatest(actionTypes.CREATE_STAFF_BARBER, CreateStaffSaga),
     yield takeLatest(actionTypes.UPDATE_STAFF_BARBER, UpdateStaffSaga),
+    yield takeLatest(actionTypes.DELETE_STAFF_BARBER, DeleteStaffSaga),
   ]);
 }
