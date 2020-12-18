@@ -11,7 +11,7 @@ import { Button, Col, DatePicker, Form, Row, Table, Tag } from 'antd';
 import { FormProps } from 'antd/es/form';
 import { ColumnsType } from 'antd/lib/table/Table';
 import moment from 'moment';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
 
@@ -23,7 +23,7 @@ export default function ListStaffBarberPage() {
   const dispatch = useDispatch();
   const { items, loading } = useBillBarber();
   const { items: booking, loading: loadingBooking, arr } = useBookings();
-
+  const [year, setYear] = useState();
   const { loading: loadingBranch, items: branch } = useBranchBarber();
   const rowKey = (item: branchFields) => `${item.id}`;
 
@@ -208,6 +208,7 @@ export default function ListStaffBarberPage() {
             }
             await dispatch(listBooking(year));
             await dispatch(ListBillBarber(year));
+            setYear(year);
           }}
           style={{ marginLeft: 32, marginTop: 12, marginRight: 32, marginBottom: 12 }}
           name="advanced_search"
@@ -247,17 +248,21 @@ export default function ListStaffBarberPage() {
           rowKey={rowKey}
           loading={loading}
         ></Table>
-
-        <LineChart width={1000} height={300} data={arr} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="day" />
-          <YAxis label={{ value: 'Tiền ($)', angle: -90, position: 'insideLeft' }} />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="total" name="Tổng tiền" stroke="#8884d8" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="booking" name="Lịch đã xong" stroke="#82ca9d" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="unBooking" name="Lịch chưa xong" stroke="#82ca9d" activeDot={{ r: 8 }} />
-        </LineChart>
+        <Col style={{ textAlign: 'center', marginTop: 30 }}>
+          <h5 style={{ fontStyle: 'italic' }}>Biểu đồ thống kê theo tháng {year}</h5>
+          <div style={{ marginLeft: '9%', marginTop: 10, alignItems: 'center', alignContent: 'center' }}>
+            <LineChart width={1000} height={300} data={arr} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="day" />
+              <YAxis label={{ value: 'Tiền ($)', angle: -90, position: 'insideLeft' }} />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="booking" name="Lịch đã xong" stroke="#82ca9d" activeDot={{ r: 8 }} />
+              <Line type="monotone" dataKey="unBooking" name="Lịch chưa xong" stroke="#FF0000" activeDot={{ r: 8 }} />
+              <Line type="monotone" dataKey="total" name="Tổng tiền ($)" stroke="#8884d8" activeDot={{ r: 8 }} />
+            </LineChart>
+          </div>
+        </Col>
       </TableHeader>
     </>
   );

@@ -59,7 +59,7 @@ export function* listBookingSaga(action: ListBookingAction) {
           undefined ||
           booking
             .filter((bk) => {
-              return bk.time.slice(3, 5) === '02';
+              return bk.done && bk.time.slice(3, 5) === '02';
             })
             .map((total) => {
               if (total && total.cartItemList.length > 0) {
@@ -103,7 +103,7 @@ export function* listBookingSaga(action: ListBookingAction) {
           undefined ||
           booking
             .filter((bk) => {
-              return bk.time.slice(3, 5) === '03';
+              return bk.done && bk.time.slice(3, 5) === '03';
             })
             .map((total) => {
               if (total && total.cartItemList.length > 0) {
@@ -147,7 +147,7 @@ export function* listBookingSaga(action: ListBookingAction) {
           undefined ||
           booking
             .filter((bk) => {
-              return bk.time.slice(3, 5) === '04';
+              return bk.done && bk.time.slice(3, 5) === '04';
             })
             .map((total) => {
               if (total && total.cartItemList.length > 0) {
@@ -191,7 +191,7 @@ export function* listBookingSaga(action: ListBookingAction) {
           undefined ||
           booking
             .filter((bk) => {
-              return bk.time.slice(3, 5) === '05';
+              return bk.done && bk.time.slice(3, 5) === '05';
             })
             .map((total) => {
               if (total && total.cartItemList.length > 0) {
@@ -235,7 +235,7 @@ export function* listBookingSaga(action: ListBookingAction) {
           undefined ||
           booking
             .filter((bk) => {
-              return bk.time.slice(3, 5) === '06';
+              return bk.done && bk.time.slice(3, 5) === '06';
             })
             .map((total) => {
               if (total && total.cartItemList.length > 0) {
@@ -279,7 +279,7 @@ export function* listBookingSaga(action: ListBookingAction) {
           undefined ||
           booking
             .filter((bk) => {
-              return bk.time.slice(3, 5) === '07';
+              return bk.done && bk.time.slice(3, 5) === '07';
             })
             .map((total) => {
               if (total && total.cartItemList.length > 0) {
@@ -324,7 +324,7 @@ export function* listBookingSaga(action: ListBookingAction) {
           undefined ||
           booking
             .filter((bk) => {
-              return bk.time.slice(3, 5) === '08';
+              return bk.done && bk.time.slice(3, 5) === '08';
             })
             .map((total) => {
               if (total && total.cartItemList.length > 0) {
@@ -368,7 +368,7 @@ export function* listBookingSaga(action: ListBookingAction) {
           undefined ||
           booking
             .filter((bk) => {
-              return bk.time.slice(3, 5) === '09';
+              return bk.done && bk.time.slice(3, 5) === '09';
             })
             .map((total) => {
               if (total && total.cartItemList.length > 0) {
@@ -412,7 +412,7 @@ export function* listBookingSaga(action: ListBookingAction) {
           undefined ||
           booking
             .filter((bk) => {
-              return bk.time.slice(3, 5) === '10';
+              return bk.done && bk.time.slice(3, 5) === '10';
             })
             .map((total) => {
               if (total && total.cartItemList.length > 0) {
@@ -456,7 +456,7 @@ export function* listBookingSaga(action: ListBookingAction) {
           undefined ||
           booking
             .filter((bk) => {
-              return bk.time.slice(3, 5) === '11';
+              return bk.done && bk.time.slice(3, 5) === '11';
             })
             .map((total) => {
               if (total && total.cartItemList.length > 0) {
@@ -500,7 +500,7 @@ export function* listBookingSaga(action: ListBookingAction) {
           undefined ||
           booking
             .filter((bk) => {
-              return bk.time.slice(3, 5) === '12';
+              return bk.done && bk.time.slice(3, 5) === '12';
             })
             .map((total) => {
               if (total && total.cartItemList.length > 0) {

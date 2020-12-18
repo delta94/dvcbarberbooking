@@ -7,6 +7,7 @@ import React from 'react';
 import { useParams } from 'react-router';
 import useStaff from '@modules/StaffBarbers/hooks/useStaff';
 import useUpdateStaff from '@modules/StaffBarbers/hooks/useUpdateStaff';
+import FormSkeleton from '@commons/components/Skeletons/FormSkeleton';
 
 const { confirm } = Modal;
 
@@ -58,7 +59,9 @@ export default function DetailStaffBarberPage() {
     <>
       <PageHeader title="Thông tin nhân viên" breadcrumb={{ routes }} />
       <FormHeader title="Chi tiết">
-        <StaffBarberForm item={staff} onCancel={showCancelConfirm} loading={loading} onSave={showAddConfirm} />
+        <FormSkeleton loading={loading}>
+          <StaffBarberForm item={staff} onCancel={showCancelConfirm} loading={loading} onSave={showAddConfirm} />
+        </FormSkeleton>
       </FormHeader>
     </>
   );

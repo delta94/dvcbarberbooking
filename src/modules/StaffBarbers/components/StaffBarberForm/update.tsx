@@ -6,7 +6,7 @@ import UploadDragger from '@modules/Media/containers/UploadDragger';
 import { StaffFields } from '@modules/StaffBarbers/redux/action-types';
 import { Button, Col, Form, Input, Row, Select, Space, Switch } from 'antd';
 import { FormItemProps, FormProps } from 'antd/es/form';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const layout: FormProps = {
   layout: 'vertical',
@@ -27,8 +27,27 @@ const { Option } = Select;
 
 export default function UpdateStaffBarberForm(props: IProp) {
   const add = Math.random();
+  const [form] = Form.useForm();
   const { items: city } = useCityBarber();
   const { items: branch } = useBranchBarber();
+
+  useEffect(
+    () => {
+      if (props.item) {
+        form.setFieldsValue({
+          name: props.item.name,
+          username: props.item.username,
+          password: props.item.password,
+          salary: Number(props.item.salary),
+          Idcity: props.item.idCity,
+          idBranch: props.item.idBranch,
+        });
+      }
+    },
+    // eslint-disable-next-line
+    [props.item?.id],
+  );
+
   const onFinish = (values: any) => {
     props.onSave &&
       props.onSave({

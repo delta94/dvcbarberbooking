@@ -52,7 +52,7 @@ export default function ListStaffBarberPage() {
       },
     },
     {
-      title: 'Trạng thái hoạt động12',
+      title: 'Trạng thái hoạt động',
       key: 'status',
       render: (record: StaffFields) => (
         <Switch

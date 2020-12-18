@@ -457,7 +457,7 @@ export const getDetailStaffFromFirebase = async (id: string, idCity: string, idB
     .get()
     .then((doc) => {
       {
-        console.log('ad12', doc.data());
+        console.log('staff', doc.data());
         data.id = doc.id;
         data.name = doc.data()?.name;
         data.password = doc.data()?.password;
@@ -467,8 +467,8 @@ export const getDetailStaffFromFirebase = async (id: string, idCity: string, idB
         data.status = doc.data()?.status;
         data.idCity = idCity;
         data.idBranch = idBranch;
-        data.salary = doc.data()?.salary;
-        data.avatar = doc.data()?.avatar;
+        data.salary = Number(doc.data()!.salary);
+        data.avatar = doc.data()!.avatar;
       }
     });
   return data;
@@ -645,6 +645,7 @@ export const createStaffFirebase = async (data: StaffFields) => {
       username: data.username,
       status: data.status,
       avatar: data.avatar,
+      salary: data.salary,
     })
     .catch((err) => {
       console.log(err);
@@ -652,7 +653,6 @@ export const createStaffFirebase = async (data: StaffFields) => {
 };
 
 export const UpdateStaffFirebase = async (data: StaffFields) => {
-  console.log('data', data);
   await firebase
     .firestore()
     .collection('AllSalon')
@@ -669,6 +669,7 @@ export const UpdateStaffFirebase = async (data: StaffFields) => {
       username: data.username,
       status: data.status,
       avatar: data.avatar,
+      salary: Number(data.salary),
     })
     .catch((err) => {
       console.log(err);
