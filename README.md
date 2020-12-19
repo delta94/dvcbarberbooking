@@ -62,3 +62,4 @@ Tất cả phần code của module sẽ nằm gọn trong MNF, bao gồm cấu 
 1. Mỗi module có file router config riêng
 2. src/router.ts sẽ tổng hợp lại tất cả router từ các module
 3. Sử dụng react-router-config để render tất cả router thông qua EmptyLayout Component (xem file src/router.ts)
+"# dvcbarberbooking" 
