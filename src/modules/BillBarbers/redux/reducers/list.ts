@@ -31,7 +31,6 @@ export default function ListBill(state = initialState, action: ListBillBarberAct
       };
 
     case LIST_BILL_BARBER_SUCCESS:
-      console.log('payload', action.payload);
       return {
         ...state,
         loading: false,

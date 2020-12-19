@@ -14,7 +14,6 @@ export default function DetailProductPage() {
   const params = useParams<{ id: string }>();
   const { loading: getDataLoading, data } = useUser(params.id);
   const { dataBookingUser } = useBooking(params.id);
-  console.log('dataItem', dataBookingUser);
   const routes = [
     {
       path: '/',

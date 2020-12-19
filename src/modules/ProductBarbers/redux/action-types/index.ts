@@ -1,4 +1,5 @@
 export * from './list-productbarber';
-export * from './delete-booking';
+export * from './delete';
 export * from './create';
+export * from './detail';
 // [Generator] don't remove this line

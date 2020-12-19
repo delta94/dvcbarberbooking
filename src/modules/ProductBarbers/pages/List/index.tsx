@@ -3,7 +3,7 @@ import PageHeader from '@commons/components/PageHeader';
 import TableHeader from '@commons/components/TableHeader';
 import FilterLawyerForm from '@modules/ProductBarbers/FilterLawyer';
 import useProductBarber from '@modules/ProductBarbers/hooks/useProductBarber';
-
+import RowActions from './RowActions';
 import { Button, Table, Image } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import React from 'react';
@@ -35,6 +35,12 @@ const columns: ColumnsType<ProductBarberFields> = [
         return 'Không có ảnh';
       }
     },
+  },
+  {
+    title: '',
+    key: 'action',
+    width: 60,
+    render: (record: any) => <RowActions record={record} />,
   },
 ];
 

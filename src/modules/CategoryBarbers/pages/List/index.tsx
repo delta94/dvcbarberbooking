@@ -11,7 +11,6 @@ import { getHistory } from '@helpers/history';
 
 export default function ListCategoryBarberPage() {
   const { loading, items } = useCategoryBarber();
-  console.log('items', items);
   const rowKey = (item: CategoriesFields) => `${item.id}`;
 
   const columns: ColumnsType<CategoriesFields> = [

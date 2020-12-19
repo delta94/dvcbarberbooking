@@ -37,7 +37,6 @@ export default function listCategory(
       };
 
     case LIST_CATEGORY_BARBER_SUCCESS:
-      console.log('payload', action.payload);
       return {
         ...state,
         loading: false,

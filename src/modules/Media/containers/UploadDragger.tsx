@@ -24,7 +24,6 @@ interface IProps {
 }
 
 export default function UploadDragger(props: IProps) {
-  console.log('ad', props.value);
   const beforeUpload = useCallback(
     async (file: any) => {
       const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
@@ -69,8 +68,7 @@ export default function UploadDragger(props: IProps) {
   useEffect(() => {
     if (props.urlAvater) {
       setState({ ...state, url: `${props.urlAvater}` });
-    } else {
-      setState({ ...state, url: '', value: '' });
+      props.onChange && props.onChange(props.urlAvater);
     }
     // eslint-disable-next-line
   }, [props]);

@@ -1,9 +1,25 @@
 import FormHeader from '@commons/components/FormHeader';
 import PageHeader from '@commons/components/PageHeader';
+import { getHistory } from '@helpers/history';
 import CityBarberUpdateForm from '@modules/CityBarbers/components/CityBarberForm/update';
 import useCityBarber from '@modules/CityBarbers/hooks/useCityBarber';
+import { Modal } from 'antd';
 import React from 'react';
 import { useParams } from 'react-router';
+
+const { confirm } = Modal;
+
+const showCancelConfirm = () => {
+  confirm({
+    title: 'Xác nhận',
+    content: 'Bạn có chắc chắn muốn hủy lưu không?',
+    okText: 'Xác nhận',
+    cancelText: 'Hủy',
+    onOk() {
+      getHistory().push('/citybarber');
+    },
+  });
+};
 
 export default function DetailsCityBarberPage() {
   const params = useParams<{ id: string }>();
@@ -27,7 +43,7 @@ export default function DetailsCityBarberPage() {
     <>
       <PageHeader title="Chi tiết thành phố" breadcrumb={{ routes }} />
       <FormHeader title="Thông tin chung">
-        <CityBarberUpdateForm item={data} loading={loading} />
+        <CityBarberUpdateForm item={data} onCancel={showCancelConfirm} loading={loading} />
       </FormHeader>
     </>
   );

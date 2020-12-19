@@ -17,7 +17,6 @@ export default function StaffRowActions(props: { record: StaffFields }) {
         okText="Xác nhận"
         placement="left"
         onConfirm={() => {
-          console.log('testDEleta', props.record);
           submit(props.record.id, props.record.idCity, props.record.idBranch);
         }}
         icon={<QuestionCircleOutlined style={{ color: 'red' }} />}

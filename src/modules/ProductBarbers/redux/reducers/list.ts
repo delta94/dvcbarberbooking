@@ -30,7 +30,6 @@ export default function listProductBarber(
       };
 
     case LIST_PRODUCT_BARBER_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
         loading: false,

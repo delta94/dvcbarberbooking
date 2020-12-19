@@ -13,7 +13,6 @@ import { User } from '@modules/User/redux/action-types';
 
 export default function ListUserPage() {
   const { loading, items } = useUsers();
-  console.log('Itemmmmmmmmmmmmmmmmmmmmmmm', items);
   const rowKey = (item: any) => `${item.id}`;
 
   const columns: ColumnsType<User> = [

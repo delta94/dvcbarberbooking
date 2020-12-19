@@ -6,7 +6,7 @@ import { DetailStaffBarberSuccess, DetailStaffBarberError } from '../actions/det
 export function* DetailStaffSaga(action: DetailStaffBarberAction) {
   try {
     const data: StaffFields = yield call(getDetailStaffFromFirebase, action.id, action.idCity, action.idBranch);
-    console.log('ada', data);
+
     yield put(DetailStaffBarberSuccess(data));
   } catch (error) {
     yield put(DetailStaffBarberError(error));

@@ -15,3 +15,5 @@ export const getDetailStaffUrl = (id: string, idCity: string, idBranch: string) 
 export const getStatisticalUrl = () => `/statistical`;
 
 export const getListProduct = () => `/productsBarber`;
+
+export const getDetailProductUrl = (id: string, idCol: string) => `/productsBarber/${id}/${idCol}`;

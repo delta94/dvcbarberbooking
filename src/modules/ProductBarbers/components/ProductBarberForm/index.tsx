@@ -1,9 +1,10 @@
 import useCategoryBarbers from '@modules/CategoryBarbers/hooks/useCategoryBarbers';
 import UploadDragger from '@modules/Media/containers/UploadDragger';
 import useCreateProductBarber from '@modules/ProductBarbers/hooks/useCreateProductBarber';
+import { ProductBarberFields } from '@modules/ProductBarbers/redux/action-types';
 import { Button, Col, Form, Input, Row, Select, Space } from 'antd';
 import { FormItemProps, FormProps } from 'antd/es/form';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const layout: FormProps = {
   layout: 'vertical',
@@ -15,9 +16,32 @@ const tailLayout: FormItemProps = {};
 
 const { Option } = Select;
 
-export default function ProductBarberForm() {
+interface IProp {
+  loading?: boolean;
+  item?: ProductBarberFields;
+  onSave?(item: ProductBarberFields): void;
+  onCancel?(): void;
+}
+
+export default function ProductBarberForm(props: IProp) {
   const { items, loading: loadingCate } = useCategoryBarbers();
   const { loading, submit } = useCreateProductBarber();
+  const [form] = Form.useForm();
+
+  useEffect(
+    () => {
+      if (props.item) {
+        form.setFieldsValue({
+          name: props.item.image,
+          price: props.item.price,
+          idCol: props.item.idCol,
+          image: props.item.image,
+        });
+      }
+    },
+    // eslint-disable-next-line
+    [props.item],
+  );
 
   const onFinish = (values: any) => {
     submit({
@@ -33,7 +57,18 @@ export default function ProductBarberForm() {
 
   return (
     <>
-      <Form {...layout} name="basic" onFinish={onFinish}>
+      <Form
+        form={form}
+        {...layout}
+        initialValues={{
+          name: props.item?.image,
+          price: props.item?.price,
+          idCol: props.item?.idCol,
+          image: props.item?.image,
+        }}
+        name="basic"
+        onFinish={onFinish}
+      >
         <Row>
           <Col span={10}>
             <Col>
@@ -107,7 +142,9 @@ export default function ProductBarberForm() {
                       <Button loading={loading} type="primary" htmlType="submit">
                         Lưu
                       </Button>
-                      <Button type="ghost">Hủy</Button>
+                      <Button onClick={props.onCancel} type="ghost">
+                        Hủy
+                      </Button>
                     </Space>
                   </Form.Item>
                 </Col>

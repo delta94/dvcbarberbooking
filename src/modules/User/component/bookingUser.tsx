@@ -11,7 +11,6 @@ interface IProp {
 
 export default function ListBookingPage(prop: IProp) {
   const rowKey = (item: any) => `${item.id}`;
-  console.log('adadadadad', prop.items);
 
   const columns: ColumnsType<BookingUserFields> = [
     {

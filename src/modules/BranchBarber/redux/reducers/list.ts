@@ -45,7 +45,6 @@ export default function ListBranch(state = initialState, action: ListBranchBarbe
       };
 
     case LIST_BRANCH_BARBER_BY_CITY_SUCCESS:
-      console.log('adad', action.payload);
       return {
         ...state,
         loading: false,

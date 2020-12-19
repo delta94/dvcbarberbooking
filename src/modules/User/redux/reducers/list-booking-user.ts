@@ -26,7 +26,6 @@ export default function listBooking(state = initialState, action: ListBookingUse
       };
 
     case LIST_BOOKING_USER_SUCCESS:
-      console.log('adadad12121212', action.payload);
       return {
         ...state,
         loading: false,

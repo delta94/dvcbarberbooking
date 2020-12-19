@@ -35,7 +35,7 @@ export default function ListStaffBarberPage() {
       },
     },
     {
-      title: 'Lương',
+      title: 'Lương ($)',
       dataIndex: 'salary',
       key: 'barberName',
     },

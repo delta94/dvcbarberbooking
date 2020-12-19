@@ -26,7 +26,6 @@ export default function listUsers(
       };
 
     case LIST_USERS_SUCCESS:
-      console.log('adadad', action.payload);
       return {
         ...state,
         loading: false,

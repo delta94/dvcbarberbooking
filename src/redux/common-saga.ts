@@ -10,7 +10,6 @@ export function* checkErrorAsync() {
       action.payload.response?.errors?.length &&
       action.payload.response?.errors[0].message.indexOf('There is no user record corresponding to this identifier')
     ) {
-      console.log('ầ');
       NotificationError('Cảnh báo', 'Đăng nhập thất bại');
     } else {
       NotificationError('Cảnh báo', message);

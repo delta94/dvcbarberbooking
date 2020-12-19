@@ -7,7 +7,6 @@ import { listBookingError, listBookingSuccess } from '../actions/list-booking';
 export function* listBookingSaga(action: ListBookingAction) {
   try {
     const booking: BookingFields[] = yield call(getListBookingFromFirebase, action.year);
-    console.log('bôking', booking);
     const arr = yield [
       {
         day: 'Tháng 1',

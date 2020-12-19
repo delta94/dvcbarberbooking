@@ -6,7 +6,11 @@ import MasterLayout from '@commons/components/layouts/MasterLayout';
 import { UserListRouter, UserDetailRouter, UserNewlRouter } from '@modules/User/routers';
 import { BookingListRouter } from '@modules/Booking/routers';
 import { CategoryBarberListRouter, CategoryBarberNewRouter } from '@modules/CategoryBarbers/routers';
-import { ProductsBarberListRouter, ProductsBarberNewRouter } from '@modules/ProductBarbers/routers';
+import {
+  ProductsBarberListRouter,
+  ProductsBarberNewRouter,
+  ProductsBarberDetailRouter,
+} from '@modules/ProductBarbers/routers';
 import { CityBarberListRouter, CityBarberNewRouter, CityBarberDetailsRouter } from '@modules/CityBarbers/routers';
 import { BranchBarberListRouter, BranchBarberNewRouter } from '@modules/BranchBarber/routers';
 import { BillBarberListRouter } from '@modules/BillBarbers/routers';
@@ -35,6 +39,7 @@ const routes: RouteConfig[] = [
 
           ProductsBarberNewRouter,
           ProductsBarberListRouter,
+          ProductsBarberDetailRouter,
 
           CityBarberNewRouter,
           CityBarberListRouter,

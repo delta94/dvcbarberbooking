@@ -177,7 +177,6 @@ export default function ListStaffBarberPage() {
               return Number(it.finalPrice);
             })
             .reduce((a, b) => {
-              console.log('ad', b);
               return a + b;
             }, 0);
         } else {

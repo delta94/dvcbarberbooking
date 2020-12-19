@@ -48,7 +48,6 @@ export default function CityBarberUpdateForm(props: IProp) {
                 <Switch
                   onChange={(values) => {
                     setStatusCity(values);
-                    console.log(values);
                   }}
                   defaultChecked={true}
                 />

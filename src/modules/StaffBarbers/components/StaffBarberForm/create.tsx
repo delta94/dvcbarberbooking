@@ -154,7 +154,6 @@ export default function CreateStaffBarberForm(props: IProp) {
                 <Select
                   onChange={(values) => {
                     submit(values.toString());
-                    console.log(values.toString());
                   }}
                 >
                   {city.map((city: CityFields) => (

@@ -23,11 +23,6 @@ export default function CityBarberCreateForm(props: IProp) {
   const [statusCity, setStatusCity] = useState<boolean>(true);
 
   const onFinish = (values: CityFields) => {
-    console.log({
-      id: '',
-      name: values.name,
-      status: statusCity,
-    });
     props.onSave &&
       props.onSave({
         id: '',
@@ -56,7 +51,6 @@ export default function CityBarberCreateForm(props: IProp) {
                   <Switch
                     onChange={(values) => {
                       setStatusCity(values);
-                      console.log(values);
                     }}
                     defaultChecked={true}
                   />

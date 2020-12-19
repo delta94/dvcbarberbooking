@@ -397,8 +397,26 @@ export const createProductBarberFirebase = async (data: ProductBarberFields) => 
 };
 
 export const DeleteProductBarberFirebase = async (id: string, idCol: string) => {
-  const UserColl = firebase.firestore().collection('User');
-  UserColl.doc(idCol).collection('Booking').doc(id).delete();
+  const ProductColl = firebase.firestore().collection('Shopping');
+  ProductColl.doc(idCol).collection('Items').doc(id).delete();
+};
+
+export const DetailProductBarberFirebase = async (id: string, idCol: string) => {
+  const prod: ProductBarberFields = { id: '', idCol: '', image: '', name: '', price: 0 };
+  const ProductColl = await firebase.firestore().collection('Shopping');
+  ProductColl.doc(idCol)
+    .collection('Items')
+    .doc(id)
+    .get()
+    .then((doc) => {
+      prod.id = id;
+      prod.idCol = idCol;
+      prod.image = doc.data()?.image;
+      prod.name = doc.data()?.name;
+      prod.price = Number(doc.data()?.price);
+    });
+
+  return prod;
 };
 
 export const getListProductFromFirebase = async () => {
@@ -432,7 +450,6 @@ export const getListProductFromFirebase = async () => {
 };
 
 export const getDeleteStaffFromFirebase = async (id: string, idCity: string, idBranch: string) => {
-  console.log(idBranch);
   await firebase
     .firestore()
     .collection('AllSalon')
@@ -446,7 +463,6 @@ export const getDeleteStaffFromFirebase = async (id: string, idCity: string, idB
 };
 
 export const getDetailStaffFromFirebase = async (id: string, idCity: string, idBranch: string) => {
-  console.log('add', id + idCity + idBranch);
   const data: StaffFields = {
     id: '',
     idBranch: '',
@@ -471,7 +487,6 @@ export const getDetailStaffFromFirebase = async (id: string, idCity: string, idB
     .get()
     .then((doc) => {
       {
-        console.log('staff', doc.data());
         data.id = doc.id;
         data.name = doc.data()?.name;
         data.password = doc.data()?.password;

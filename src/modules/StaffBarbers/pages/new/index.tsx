@@ -5,6 +5,7 @@ import StaffBarberForm from '@modules/StaffBarbers/components/StaffBarberForm/cr
 import { Modal } from 'antd';
 import React from 'react';
 import useCreateStaff from '@modules/StaffBarbers/hooks/useCreateStaff';
+import { getListStaffUrl } from '@helpers/url';
 
 const { confirm } = Modal;
 
@@ -15,7 +16,7 @@ const showCancelConfirm = () => {
     okText: 'Xác nhận',
     cancelText: 'Hủy',
     onOk() {
-      getHistory().push('/citybarber');
+      getHistory().push(getListStaffUrl());
     },
   });
 };

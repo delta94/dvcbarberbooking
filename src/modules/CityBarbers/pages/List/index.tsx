@@ -13,7 +13,6 @@ import useUpdateCity from '@modules/CityBarbers/hooks/useUpdateCityBarber';
 export default function ListCityBarberPage() {
   const { loading, items } = useCityBarber();
   const { submit } = useUpdateCity();
-  console.log('items', items);
   const rowKey = (item: CityFields) => `${item.id}`;
 
   const columns: ColumnsType<CityFields> = [

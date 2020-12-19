@@ -5,7 +5,6 @@ import {
   DELETE_STAFF_BARBER_SUCCESS,
   DeleteStaffBarberActionTypes,
 } from '../action-types/delete';
-import { StaffFields } from '../action-types/list';
 
 export const DeleteStaffBarber = (id: string, idCity: string, idBranch: string): DeleteStaffBarberActionTypes => ({
   type: DELETE_STAFF_BARBER,

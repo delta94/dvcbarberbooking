@@ -6,7 +6,6 @@ import { getBranchByCityFromFirebase } from '@modules/firebaseConnect/firebaseCo
 export function* ListBranchByCitySaga(action: ListBranchByCityAction) {
   try {
     const data: branchFields[] = yield call(getBranchByCityFromFirebase, action.payload);
-    console.log(data);
     yield put(ListBranchByCitySuccess(data));
   } catch (error) {
     yield put(ListBranchByCityError(error));

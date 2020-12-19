@@ -37,7 +37,6 @@ export default function listCity(
       };
 
     case LIST_CITY_BARBER_SUCCESS:
-      console.log('payload', action.payload);
       return {
         ...state,
         loading: false,

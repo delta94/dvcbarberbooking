@@ -8,6 +8,12 @@ import { useParams } from 'react-router';
 import useStaff from '@modules/StaffBarbers/hooks/useStaff';
 import useUpdateStaff from '@modules/StaffBarbers/hooks/useUpdateStaff';
 import FormSkeleton from '@commons/components/Skeletons/FormSkeleton';
+import useDeleteStaff from '@modules/StaffBarbers/hooks/useDeleteStaff';
+import { StaffFields } from '@modules/StaffBarbers/redux/action-types';
+import useCreateStaff from '@modules/StaffBarbers/hooks/useCreateStaff';
+import { createStaffFirebase, getDeleteStaffFromFirebase } from '@modules/firebaseConnect/firebaseConnect';
+import { getListStaffUrl } from '@helpers/url';
+import { NotificationSuccess } from '@commons/components/Notification';
 
 const { confirm } = Modal;
 
@@ -18,7 +24,7 @@ const showCancelConfirm = () => {
     okText: 'Xác nhận',
     cancelText: 'Hủy',
     onOk() {
-      getHistory().push('/citybarber');
+      getHistory().push(getListStaffUrl());
     },
   });
 };
@@ -26,8 +32,9 @@ const showCancelConfirm = () => {
 export default function DetailStaffBarberPage() {
   const params = useParams<{ id: string; idCity: string; idBranch: string }>();
   const { items: staff, loading } = useStaff(params.id, params.idCity, params.idBranch);
-  console.log('staff', staff);
   const { submit } = useUpdateStaff();
+  const { submit: deleteStaff } = useDeleteStaff();
+  const { submit: createStaff } = useCreateStaff();
   const routes = [
     {
       path: '/',
@@ -43,14 +50,22 @@ export default function DetailStaffBarberPage() {
     },
   ];
 
-  const showAddConfirm = (props: any) => {
+  const showAddConfirm = (props: StaffFields) => {
     confirm({
       title: 'Xác nhận',
       content: 'Bạn có chắc chắn muốn chỉnh sửa nhân viên này không?',
       okText: 'Xác nhận',
       cancelText: 'Hủy',
-      onOk() {
-        submit(props);
+      onOk: async () => {
+        if (props.idCity != params.idCity || props.idBranch != params.idBranch) {
+          console.log(props);
+          await getDeleteStaffFromFirebase(params.id, params.idCity, params.idBranch);
+          await createStaffFirebase(props);
+          NotificationSuccess('Thông báo', 'Chỉnh sửa thành công');
+          getHistory().push(getListStaffUrl());
+        } else {
+          submit(props);
+        }
       },
     });
   };
