@@ -49,11 +49,11 @@ export default function CityBarberCreateForm(props: IProp) {
                       message: 'Đây là trường bắt buộc',
                     },
                   ]}
-                  label="Name"
+                  label="Tên thành phố"
                   name="Tên thành phố"
                   {...tailLayout}
                 >
-                  <Input />
+                  <Input maxLength={255} />
                 </Form.Item>
               </Col>
             </Row>
