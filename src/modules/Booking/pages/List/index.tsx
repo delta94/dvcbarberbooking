@@ -18,41 +18,49 @@ export default function ListBookingPage() {
     {
       title: 'Người đặt',
       dataIndex: 'customerName',
+      align: 'center',
       key: 'customerName',
     },
     {
       title: 'Số điện thoại',
       dataIndex: 'customerPhone',
+      align: 'center',
       key: 'customerPhone',
     },
     {
       title: 'Thợ cắt',
       dataIndex: 'barberName',
+      align: 'center',
       key: 'barberName',
     },
     {
       title: 'Tên chi nhánh',
       dataIndex: 'salonName',
+      align: 'center',
       key: 'salonName',
     },
     {
       title: 'Địa chỉ',
       dataIndex: 'salonAddress',
+      align: 'center',
       key: 'salonAddress',
     },
     {
       title: 'Slot',
+      align: 'center',
       dataIndex: 'slot',
       key: 'slot',
     },
     {
       title: 'Thời gian',
+      align: 'center',
       dataIndex: 'time',
       key: 'time',
     },
 
     {
       title: 'Trạng thái',
+      align: 'center',
       key: 'done',
       render: (record: BookingFields) => {
         if (record.done) {

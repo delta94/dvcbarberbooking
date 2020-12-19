@@ -21,11 +21,13 @@ export default function ListStaffBarberPage() {
     {
       title: 'Tên nhân viên',
       dataIndex: 'name',
+      align: 'center',
       key: 'barberName',
     },
     {
       title: 'Đánh giá',
       key: 'barberName',
+      align: 'center',
       render: (_, record) => {
         if (record.rating == 0 && record.ratingTimes == 0) {
           return 'Chưa có đánh giá';
@@ -37,10 +39,12 @@ export default function ListStaffBarberPage() {
     {
       title: 'Lương ($)',
       dataIndex: 'salary',
+      align: 'center',
       key: 'barberName',
     },
     {
       title: 'Ảnh nhân viên',
+      align: 'center',
       dataIndex: 'avatar',
       key: 'barberName',
       render: (text) => {
@@ -53,6 +57,7 @@ export default function ListStaffBarberPage() {
     },
     {
       title: 'Trạng thái hoạt động',
+      align: 'center',
       key: 'status',
       render: (record: StaffFields) => (
         <Switch
