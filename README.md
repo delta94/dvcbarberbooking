@@ -65,3 +65,4 @@ Tất cả phần code của module sẽ nằm gọn trong MNF, bao gồm cấu 
 "# dvcbarberbooking" 
 "# dvcbarberbooking" 
 "# dvcbarberbooking" 
+"# dvcbarberbooking" 
