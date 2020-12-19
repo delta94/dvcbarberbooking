@@ -3,7 +3,6 @@ import TableHeader from '@commons/components/TableHeader';
 import { Button, Table, Switch, Image } from 'antd';
 import React from 'react';
 import { ColumnsType } from 'antd/lib/table/Table';
-import FilterBill from '@modules/BillBarbers/containers/FilterBill';
 import useStaffBarber from '@modules/StaffBarbers/hooks/useStaffBarber';
 import { StaffFields } from '@modules/StaffBarbers/redux/action-types';
 import { PlusOutlined } from '@ant-design/icons';
@@ -11,6 +10,7 @@ import { getHistory } from '@helpers/history';
 import { getNewStaffUrl } from '@helpers/url';
 import RowActions from '@modules/StaffBarbers/pages/List/RowActions';
 import useUpdateStaff from '@modules/StaffBarbers/hooks/useUpdateStaff';
+import FilterStaff from '@modules/StaffBarbers/containers/FilterStaff';
 
 export default function ListStaffBarberPage() {
   const { loading, items } = useStaffBarber();
@@ -96,7 +96,7 @@ export default function ListStaffBarberPage() {
   return (
     <>
       <PageHeader title="Quản lý nhân viên" breadcrumb={{ routes }} />
-      <FilterBill />
+      <FilterStaff />
       <TableHeader
         title="Danh sách nhân viên"
         extra={

@@ -16,6 +16,7 @@ export type branchFields = {
   openHours?: string;
   phone?: string;
   website?: string;
+  status: boolean;
 };
 
 export interface ListBranchBarberAction {

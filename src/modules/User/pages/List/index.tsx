@@ -16,17 +16,17 @@ export default function ListUserPage() {
 
   const columns: ColumnsType<User> = [
     {
-      title: 'name',
+      title: 'Tên người dùng',
       dataIndex: 'name',
       key: 'name',
     },
     {
-      title: 'PhoneNumber',
+      title: 'Số điện thoại người dùng',
       dataIndex: 'phoneNumber',
       key: 'phoneNumber',
     },
     {
-      title: 'Address',
+      title: 'Địa chỉ',
       dataIndex: 'address',
       key: 'address',
     },

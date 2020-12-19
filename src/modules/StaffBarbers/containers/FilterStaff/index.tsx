@@ -3,19 +3,19 @@ import { FormProps } from 'antd/es/form';
 import { Button, Col, Form, Row, Space, Input } from 'antd';
 import { RetweetOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
-import { ListBillBarberFilter, ListBillbarberFilterOut } from '@modules/BillBarbers/redux/actions/list-bill';
+import { ListStaffbarberFilterOut, ListStaffBarberFilter } from '@modules/StaffBarbers/redux/actions/list-staff';
 const layout: FormProps = {
   layout: 'vertical',
 };
 
-const FilterBill: FC = () => {
+const FilterStaff: FC = () => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const onFinish = (values: any) => {
     if (values.name === '') {
       values.name = undefined;
     }
-    dispatch(ListBillBarberFilter(values.infor));
+    dispatch(ListStaffBarberFilter(values.infor));
   };
 
   return (
@@ -46,7 +46,7 @@ const FilterBill: FC = () => {
               <Button
                 onClick={() => {
                   form.resetFields();
-                  dispatch(ListBillbarberFilterOut());
+                  dispatch(ListStaffbarberFilterOut());
                 }}
               >
                 <RetweetOutlined />
@@ -60,4 +60,4 @@ const FilterBill: FC = () => {
   );
 };
 
-export default FilterBill;
+export default FilterStaff;

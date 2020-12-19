@@ -243,7 +243,7 @@ export default function ListStaffBarberPage() {
         </Form>
         <Table
           columns={columns}
-          dataSource={[...branch, { id: 'Total', name: 'Tổng tiền' }]}
+          dataSource={[...branch, { id: 'Total', name: 'Tổng tiền', status: false }]}
           rowKey={rowKey}
           loading={loading}
         ></Table>

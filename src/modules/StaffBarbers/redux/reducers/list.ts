@@ -31,6 +31,7 @@ export default function ListStaff(state = initialState, action: ListStaffBarberA
       };
 
     case LIST_STAFF_BARBER_SUCCESS:
+      console.log(action.payload);
       return {
         ...state,
         loading: false,

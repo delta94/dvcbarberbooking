@@ -49,6 +49,7 @@ export const getAllBranchFromFirebase = async () => {
             openHours: doc.data().openHours,
             phone: doc.data().phone,
             website: doc.data().website,
+            status: doc.data().status,
           });
         });
       });
@@ -75,6 +76,7 @@ export const getBranchByCityFromFirebase = async (idCity: string) => {
           openHours: doc.data().openHours,
           phone: doc.data().phone,
           website: doc.data().website,
+          status: doc.data().status,
         });
       });
     });
@@ -237,8 +239,21 @@ export const getDetailBookingFromFirebase = async (id: string, idCol: string) =>
   return data;
 };
 
+export const getUpdateBranchFromFirebase = async (data: branchFields) => {
+  const BranchColl = await firebase.firestore().collection('AllSalon');
+  await BranchColl.doc(data.idCity).collection('Branch').doc(data.id).set({
+    name: data.name,
+    address: data.address,
+    openHours: data.openHours,
+    phone: data.phone,
+    website: data.website,
+    status: data.status,
+  });
+  return data;
+};
+
 export const getDetailBranchFromFirebase = async (id: string, idCity: string) => {
-  const data: branchFields = { id: '', address: '' };
+  const data: branchFields = { id: '', address: '', status: false };
   const UserColl = await firebase.firestore().collection('AllSalon');
   await UserColl.doc(idCity)
     .collection('Branch')
@@ -252,9 +267,7 @@ export const getDetailBranchFromFirebase = async (id: string, idCity: string) =>
       data.phone = doc.data()?.phone;
       data.website = doc.data()?.website;
       data.openHours = doc.data()?.openHours;
-
-      console.log('Snap', id);
-      console.log('Snap', idCity);
+      data.status = doc.data()?.status;
     });
   return data;
 };
