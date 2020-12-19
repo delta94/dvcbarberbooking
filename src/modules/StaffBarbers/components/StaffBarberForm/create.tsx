@@ -69,7 +69,7 @@ export default function CreateStaffBarberForm(props: IProp) {
                   name="name"
                   {...tailLayout}
                 >
-                  <Input />
+                  <Input maxLength={255} />
                 </Form.Item>
               </Col>
               <Col span={10}>
@@ -88,7 +88,7 @@ export default function CreateStaffBarberForm(props: IProp) {
                   name="username"
                   {...tailLayout}
                 >
-                  <Input />
+                  <Input maxLength={100} />
                 </Form.Item>
               </Col>
             </Row>
@@ -110,7 +110,7 @@ export default function CreateStaffBarberForm(props: IProp) {
                     name="password"
                     {...tailLayout}
                   >
-                    <Input />
+                    <Input maxLength={255} />
                   </Form.Item>
                 </Col>
                 <Col span={10}>

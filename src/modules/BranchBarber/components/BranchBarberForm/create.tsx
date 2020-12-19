@@ -35,7 +35,21 @@ export default function BranchBarberForm(props: IProp) {
           <Col span={16}>
             <Row>
               <Col span={12}>
-                <Form.Item label="Tên chi nhánh" name="name" {...tailLayout}>
+                <Form.Item
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Đây là trường bắt buộc',
+                    },
+                    {
+                      whitespace: true,
+                      message: 'Đây là trường bắt buộc',
+                    },
+                  ]}
+                  label="Tên chi nhánh"
+                  name="name"
+                  {...tailLayout}
+                >
                   <Input />
                 </Form.Item>
               </Col>
@@ -45,7 +59,21 @@ export default function BranchBarberForm(props: IProp) {
           <Col span={16}>
             <Row>
               <Col span={12}>
-                <Form.Item label="Địa chỉ" name="address" {...tailLayout}>
+                <Form.Item
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Đây là trường bắt buộc',
+                    },
+                    {
+                      whitespace: true,
+                      message: 'Đây là trường bắt buộc',
+                    },
+                  ]}
+                  label="Địa chỉ"
+                  name="address"
+                  {...tailLayout}
+                >
                   <Input />
                 </Form.Item>
               </Col>
@@ -55,7 +83,21 @@ export default function BranchBarberForm(props: IProp) {
           <Col span={16}>
             <Row>
               <Col span={12}>
-                <Form.Item label="Số điện thoại" name="phone" {...tailLayout}>
+                <Form.Item
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Đây là trường bắt buộc',
+                    },
+                    {
+                      whitespace: true,
+                      message: 'Đây là trường bắt buộc',
+                    },
+                  ]}
+                  label="Số điện thoại"
+                  name="phone"
+                  {...tailLayout}
+                >
                   <Input />
                 </Form.Item>
               </Col>
@@ -65,7 +107,21 @@ export default function BranchBarberForm(props: IProp) {
           <Col span={16}>
             <Row>
               <Col span={12}>
-                <Form.Item label="Website" name="website" {...tailLayout}>
+                <Form.Item
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Đây là trường bắt buộc',
+                    },
+                    {
+                      whitespace: true,
+                      message: 'Đây là trường bắt buộc',
+                    },
+                  ]}
+                  label="Website"
+                  name="website"
+                  {...tailLayout}
+                >
                   <Input />
                 </Form.Item>
               </Col>
@@ -75,7 +131,21 @@ export default function BranchBarberForm(props: IProp) {
           <Col span={16}>
             <Row>
               <Col span={12}>
-                <Form.Item label="Giờ mở cửa" name="openHours" {...tailLayout}>
+                <Form.Item
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Đây là trường bắt buộc',
+                    },
+                    {
+                      whitespace: true,
+                      message: 'Đây là trường bắt buộc',
+                    },
+                  ]}
+                  label="Giờ mở cửa"
+                  name="openHours"
+                  {...tailLayout}
+                >
                   <Input />
                 </Form.Item>
               </Col>
@@ -85,7 +155,21 @@ export default function BranchBarberForm(props: IProp) {
           <Col span={16}>
             <Row>
               <Col span={12}>
-                <Form.Item label="Thành phố" name="idCity" {...tailLayout}>
+                <Form.Item
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Đây là trường bắt buộc',
+                    },
+                    {
+                      whitespace: true,
+                      message: 'Đây là trường bắt buộc',
+                    },
+                  ]}
+                  label="Thành phố"
+                  name="idCity"
+                  {...tailLayout}
+                >
                   <Select showSearch filterOption={false} style={{ width: '100%' }}>
                     {city.map((p: CityFields) => (
                       <Option key={p.id} value={p.id}>
