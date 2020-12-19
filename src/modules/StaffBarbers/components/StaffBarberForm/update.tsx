@@ -29,7 +29,6 @@ export default function UpdateStaffBarberForm(props: IProp) {
   const add = Math.random();
   const [form] = Form.useForm();
   const { items: city } = useCityBarber();
-  const [idb, setIdb] = useState();
   const { submit, itemsBranchByCity, loading } = useBranchByCity();
 
   useEffect(
@@ -43,12 +42,11 @@ export default function UpdateStaffBarberForm(props: IProp) {
   );
 
   const onFinish = (values: any) => {
-    setIdb(values.idBranch);
     props.onSave &&
       props.onSave({
         id: props.item!.id,
         idCity: values.Idcity,
-        idBranch: idb!,
+        idBranch: values.idBranch,
         name: values.name,
         password: values.password,
         rating: props.item!.rating,

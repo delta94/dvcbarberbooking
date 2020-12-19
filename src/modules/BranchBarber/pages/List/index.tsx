@@ -38,7 +38,7 @@ export default function ListBranchBarberPage() {
       key: 'website',
     },
     {
-      title: 'Bắt đầu làm việc',
+      title: 'Giờ mở cửa',
       dataIndex: 'openHours',
       key: 'openHours',
     },

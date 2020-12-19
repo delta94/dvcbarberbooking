@@ -18,11 +18,13 @@ export default function ListUserPage() {
     {
       title: 'Tên người dùng',
       dataIndex: 'name',
+      align: 'center',
       key: 'name',
     },
     {
       title: 'Số điện thoại người dùng',
       dataIndex: 'phoneNumber',
+      align: 'center',
       key: 'phoneNumber',
     },
     {
@@ -32,6 +34,7 @@ export default function ListUserPage() {
     },
     {
       title: 'Trạng thái hoạt động',
+      align: 'center',
       key: 'status',
       render: (record: User) => (
         <Switch

@@ -23,7 +23,7 @@ export default function DashboardPage() {
     <>
       <PageHeader title="Tổng quan" breadcrumb={{ routes }} />
       <Swiper
-        style={{ width: 1000, height: 600, justifyItems: 'center', marginTop: 30 }}
+        style={{ width: 800, height: 350, justifyItems: 'center', marginTop: 30 }}
         spaceBetween={50}
         slidesPerView={1}
         navigation
@@ -50,8 +50,17 @@ export default function DashboardPage() {
         ...
       </Swiper>
       <Form>
-        <Row style={{ backgroundColor: '#2E2E2E', textAlign: 'center' }}>
-          <h2 style={{ alignItems: 'center', justifyContent: 'center' }}> DVC Barber </h2>
+        <Row style={{ backgroundColor: 'white', margin: 30, padding: 15 }}>
+          <h2 style={{ paddingLeft: 50, alignItems: 'center', justifyContent: 'center' }}> DVC Barber </h2>
+
+          <div style={{ marginLeft: 15 }}>
+            <p>+ Website dùng để quản lí lịch đặt của khách </p>
+            <p>+ Website dùng để quản lí nhân viên </p>
+            <p>+ Website dùng để quản thời gian </p>
+            <p>+ Website dùng để quản lí dịch vụ và sản phảm </p>
+            <p>+ Website dùng để quản lí chi nhánh</p>
+            <p>+ Website dùng để thống kê </p>
+          </div>
         </Row>
       </Form>
     </>

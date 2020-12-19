@@ -11,7 +11,7 @@ export default function ProductRowActions(props: { record: ProductBarberFields }
 
   return (
     <Space size="small">
-      <Button
+      {/* <Button
         type="ghost"
         onClick={() => {
           getHistory().push(getDetailProductUrl(props.record.id, props.record.idCol));
@@ -20,7 +20,7 @@ export default function ProductRowActions(props: { record: ProductBarberFields }
         title="Chỉnh sửa"
         icon={<EditOutlined />}
         size="middle"
-      />
+      /> */}
 
       <Popconfirm
         title="Bạn có chắc chắn muốn xóa sản phẩm này không?"

@@ -15,11 +15,6 @@ export default function ListCategoryBarberPage() {
 
   const columns: ColumnsType<CategoriesFields> = [
     {
-      title: 'Id',
-      dataIndex: 'id',
-      key: 'id',
-    },
-    {
       title: 'Tên loại sản phẩm',
       dataIndex: 'name',
       key: 'name',

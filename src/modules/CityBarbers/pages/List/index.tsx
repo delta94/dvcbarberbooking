@@ -17,11 +17,6 @@ export default function ListCityBarberPage() {
 
   const columns: ColumnsType<CityFields> = [
     {
-      title: 'Id',
-      dataIndex: 'id',
-      key: 'id',
-    },
-    {
       title: 'Tên thành phố',
       dataIndex: 'name',
       key: 'name',
