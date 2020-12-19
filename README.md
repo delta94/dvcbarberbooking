@@ -64,3 +64,4 @@ Tất cả phần code của module sẽ nằm gọn trong MNF, bao gồm cấu 
 3. Sử dụng react-router-config để render tất cả router thông qua EmptyLayout Component (xem file src/router.ts)
 "# dvcbarberbooking" 
 "# dvcbarberbooking" 
+"# dvcbarberbooking" 
