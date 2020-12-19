@@ -31,6 +31,11 @@ export default function ListBookingPage() {
       key: 'barberName',
     },
     {
+      title: 'Tên chi nhánh',
+      dataIndex: 'salonName',
+      key: 'salonName',
+    },
+    {
       title: 'Địa chỉ',
       dataIndex: 'salonAddress',
       key: 'salonAddress',
@@ -45,6 +50,7 @@ export default function ListBookingPage() {
       dataIndex: 'time',
       key: 'time',
     },
+
     {
       title: 'Trạng thái',
       key: 'done',

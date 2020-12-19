@@ -42,10 +42,9 @@ export function* loginAsync(action: LoginAction) {
 export function loginSuccessAsync(action: LoginActionSuccess) {
   const data = action.payload;
 
-  // if (!data?.isAutoLogin) {
-  //   setAuthData(data);
-  //   NotificationSuccess('Thông báo', 'Đăng nhập thành công');
-  // }
+  if (!data?.isAutoLogin) {
+    NotificationSuccess('Thông báo', 'Đăng nhập thành công');
+  }
 
   const redirectUrl = getRedirectUrl();
   if (redirectUrl) {

@@ -1,9 +1,11 @@
 import TableHeader from '@commons/components/TableHeader';
 import { Table, Tag } from 'antd';
 import React from 'react';
-import FilterUser from '@modules/User/containers/FilterUser';
+import FilterBookingUser from '@modules/User/component/filterBookingUser';
 import { ColumnsType } from 'antd/lib/table/Table';
 import { BookingUserFields } from '../redux/action-types/list-booking-user';
+import useBooking from '../hooks/userBooking';
+import { useParams } from 'react-router';
 
 interface IProp {
   items: BookingUserFields[];
@@ -11,6 +13,8 @@ interface IProp {
 
 export default function ListBookingPage(prop: IProp) {
   const rowKey = (item: any) => `${item.id}`;
+  const params = useParams<{ id: string }>();
+  const { dataBookingUser } = useBooking(params.id);
 
   const columns: ColumnsType<BookingUserFields> = [
     {
@@ -70,9 +74,9 @@ export default function ListBookingPage(prop: IProp) {
   // };
   return (
     <>
-      <FilterUser />
+      <FilterBookingUser />
       <TableHeader title="Danh sách lịch đã đặt">
-        <Table columns={columns} dataSource={[...prop.items]} rowKey={rowKey}></Table>
+        <Table columns={columns} dataSource={[...dataBookingUser!]} rowKey={rowKey}></Table>
       </TableHeader>
     </>
   );

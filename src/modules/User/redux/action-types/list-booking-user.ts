@@ -4,6 +4,8 @@ export const LIST_BOOKING_USER = 'LIST_BOOKING_USER';
 export const LIST_BOOKING_USER_SUCCESS = 'LIST_BOOKING_USER_SUCCESS';
 export const LIST_BOOKING_USER_ERROR = 'LIST_BOOKING_USER_ERROR';
 export const LIST_BOOKING_USER_UPDATE_FILTER = 'LIST_BOOKING_USER_UPDATE_FILTER';
+export const LIST_BOOKING_USERS_FILTER = 'LIST_USERS_FILTER';
+export const LIST_BOOKING_USERS_FILTER_OUT = 'LIST_USERS_FILTER_OUT';
 
 export type cartItem = {
   producId: string;
@@ -46,7 +48,17 @@ export interface ListBookingUserActionError {
   payload: AppError;
 }
 
+export interface FilterBookingUsersAction {
+  type: typeof LIST_BOOKING_USERS_FILTER;
+  payload: string;
+}
+export interface FilterOutBookingUsersAction {
+  type: typeof LIST_BOOKING_USERS_FILTER_OUT;
+}
+
 export type ListBookingUserActionTypes =
   | ListBookingUserAction
   | ListBookingUserActionSuccess
-  | ListBookingUserActionError;
+  | ListBookingUserActionError
+  | FilterBookingUsersAction
+  | FilterOutBookingUsersAction;

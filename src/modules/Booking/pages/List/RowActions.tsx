@@ -11,7 +11,7 @@ export default function BookingRowActions(props: { record: BookingFields }) {
   const dispatch = useDispatch();
   return (
     <Space size="small">
-      <Button
+      {/* <Button
         type="ghost"
         onClick={() => {
           dispatch(getDetailsBooking(props.record.id, props.record.idCol));
@@ -20,7 +20,7 @@ export default function BookingRowActions(props: { record: BookingFields }) {
         title="Chỉnh sửa"
         icon={<EditOutlined />}
         size="middle"
-      />
+      /> */}
 
       <Popconfirm
         title="Bạn có chắc chắn muốn xóa lịch đặt này không?"

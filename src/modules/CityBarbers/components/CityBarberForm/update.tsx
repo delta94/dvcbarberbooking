@@ -34,7 +34,21 @@ export default function CityBarberUpdateForm(props: IProp) {
           <Col span={16}>
             <Row>
               <Col span={12}>
-                <Form.Item label="Name" name="name" {...tailLayout}>
+                <Form.Item
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Đây là trường bắt buộc',
+                    },
+                    {
+                      whitespace: true,
+                      message: 'Đây là trường bắt buộc',
+                    },
+                  ]}
+                  label="Tên thành phố"
+                  name="name"
+                  {...tailLayout}
+                >
                   <Input />
                 </Form.Item>
               </Col>

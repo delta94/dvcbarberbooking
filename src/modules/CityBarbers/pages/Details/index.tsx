@@ -1,5 +1,6 @@
 import FormHeader from '@commons/components/FormHeader';
 import PageHeader from '@commons/components/PageHeader';
+import FormSkeleton from '@commons/components/Skeletons/FormSkeleton';
 import { getHistory } from '@helpers/history';
 import CityBarberUpdateForm from '@modules/CityBarbers/components/CityBarberForm/update';
 import useCityBarber from '@modules/CityBarbers/hooks/useCityBarber';
@@ -43,7 +44,9 @@ export default function DetailsCityBarberPage() {
     <>
       <PageHeader title="Chi tiết thành phố" breadcrumb={{ routes }} />
       <FormHeader title="Thông tin chung">
-        <CityBarberUpdateForm item={data} onCancel={showCancelConfirm} loading={loading} />
+        <FormSkeleton loading={loading}>
+          <CityBarberUpdateForm item={data} onCancel={showCancelConfirm} loading={loading} />
+        </FormSkeleton>
       </FormHeader>
     </>
   );
