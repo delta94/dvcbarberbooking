@@ -1,19 +1,18 @@
 import PageHeader from '@commons/components/PageHeader';
 import TableHeader from '@commons/components/TableHeader';
 import { Table, Tag } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 import FilterBooking from '@modules/Booking/containers/FilterBooking';
 import { ColumnsType } from 'antd/lib/table/Table';
 import useBookings from '@modules/Booking/hooks/useBookings';
 import UserRowActions from './RowActions';
 import { BookingFields } from '@modules/Booking/redux/action-types';
-// import useDetailBookings from '@modules/Booking/hooks/useDetailBookings';
+import firebase from '@modules/firebaseConnect/firebaseConnect';
 
 export default function ListBookingPage() {
   const { loading, items } = useBookings();
   // const { loadingDetail, data } = useDetailBookings('+84979353691', 'Jzo88PrImdQeAcXOmmHj');
   const rowKey = (item: any) => `${item.id}`;
-
   const columns: ColumnsType<BookingFields> = [
     {
       title: 'Người đặt',

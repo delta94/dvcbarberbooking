@@ -38,17 +38,26 @@ export default function ListBillBarberPage() {
       key: 'salonAddress',
     },
     {
-      title: 'dịch vụ đi kèm',
+      title: 'Thời gian',
+      dataIndex: 'time',
+      key: 'time',
+    },
+    {
+      title: 'Dịch vụ đi kèm',
       dataIndex: ' shoppingItemList',
       width: 200,
       key: ' shoppingItemList',
       render: (_, record) => {
-        return record.shoppingItemList?.map((item: any) => item.productName).join(', ');
+        if (record.shoppingItemList!.length > 0) {
+          return record.shoppingItemList?.map((item: any) => item.productName).join(', ');
+        } else {
+          return 'Không có dịch vụ';
+        }
       },
     },
 
     {
-      title: 'Tổng tiền (VNĐ)',
+      title: 'Tổng tiền ($)',
       dataIndex: 'finalPrice',
       key: 'finalPrice',
     },
