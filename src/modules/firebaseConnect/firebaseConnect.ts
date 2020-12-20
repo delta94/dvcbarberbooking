@@ -220,8 +220,32 @@ export const getListBookingFromFirebase = async (year?: string) => {
 };
 
 export const DeleteBookingFirebase = async (id: string, idCol: string) => {
-  const UserColl = firebase.firestore().collection('User');
+  const UserColl = await firebase.firestore().collection('User');
   UserColl.doc(idCol).collection('Booking').doc(id).delete();
+};
+
+export const DeleteBookingStaffFirebase = async (
+  idCity: string,
+  idbranch: string,
+  idStaff: string,
+  day: string,
+  month: string,
+  year: string,
+  slot: string,
+) => {
+  await firebase
+    .firestore()
+    .collection('AllSalon')
+    .doc(idCity)
+    .collection('Branch')
+    .doc(idbranch)
+    .collection('Barbers')
+    .doc(idStaff)
+    .collection(day + '_' + month + '_' + year)
+    .doc(slot)
+    .delete();
+  console.log(day + month + year + slot + idbranch + idCity + idStaff);
+  return 'true';
 };
 
 export const getDetailBookingFromFirebase = async (id: string, idCol: string) => {

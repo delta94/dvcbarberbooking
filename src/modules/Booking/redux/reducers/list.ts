@@ -1,4 +1,9 @@
-import { DELETE_BOOKING, DELETE_BOOKING_ERROR, DELETE_BOOKING_SUCCESS } from '../action-types';
+import {
+  DeleteBookingStaffActionTypes,
+  DELETE_BOOKING,
+  DELETE_BOOKING_ERROR,
+  DELETE_BOOKING_SUCCESS,
+} from '../action-types';
 import {
   LIST_BOOKING,
   LIST_BOOKING_ERROR,
@@ -6,6 +11,9 @@ import {
   LIST_BOOKING_FILTER,
   LIST_BOOKING_FILTER_OUT,
   ListBookingActionTypes,
+  DELETE_BOOKING_STAFF,
+  DELETE_BOOKING_STAFF_ERROR,
+  DELETE_BOOKING_STAFF_SUCCESS,
   BookingFields,
   DeleteBookingActionTypes,
 } from '../action-types/index';
@@ -28,7 +36,7 @@ const initialState: ListBookingState = {
 
 export default function listBooking(
   state = initialState,
-  action: ListBookingActionTypes | DeleteBookingActionTypes,
+  action: ListBookingActionTypes | DeleteBookingActionTypes | DeleteBookingStaffActionTypes,
 ): ListBookingState {
   switch (action.type) {
     case LIST_BOOKING:
@@ -69,6 +77,21 @@ export default function listBooking(
         deletingItems: state.deletingItems?.filter((t) => t !== action.target),
       };
 
+    // Delete Booking of staff
+    case DELETE_BOOKING_STAFF:
+      return {
+        ...state,
+      };
+    case DELETE_BOOKING_STAFF_SUCCESS:
+      return {
+        ...state,
+      };
+    case DELETE_BOOKING_STAFF_ERROR:
+      return {
+        ...state,
+      };
+
+    //Filter
     case LIST_BOOKING_FILTER:
       const it = state.itemsFilter.filter(
         (items) =>
